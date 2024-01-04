@@ -1,0 +1,16 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/IT_Step/Homeworks/.vs
+/IT_Step/Homeworks/Homework_1/Task_1/bin/Debug/net8.0
+/IT_Step/Homeworks/Homework_1/Task_3/obj
+/IT_Step/Homeworks/Homework_1/Task_1/obj
+/IT_Step/Homeworks/Homework_1/.vs/Homework_1
+/IT_Step/Homeworks/Homework_1/Task_2/bin/Debug/net8.0
+/IT_Step/Homeworks/Homework_1/Task_2/obj
+/IT_Step/Homeworks/Homework_1/Task_1_Tests/bin/Debug/net8.0
+/IT_Step/Homeworks/Homework_1/Task_1_Tests/obj
+/IT_Step/Homeworks/Homework_1/Task_3/bin/Debug/net8.0
+/IT_Step/Homeworks/Homework_1/Task_2_Tests/bin/Debug/net8.0
+/IT_Step/Homeworks/Homework_1/Task_2_Tests/obj
