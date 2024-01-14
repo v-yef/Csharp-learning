@@ -32,16 +32,43 @@ namespace Task_3
         static void Main(string[] args)
         {
             Console.WriteLine("Enter 1st digit to form a number:");
-
             bool isNum1 = sbyte.TryParse(Console.ReadLine(), out sbyte digit1);
+
+            Console.WriteLine("Enter 2nd digit to form a number:");
             bool isNum2 = sbyte.TryParse(Console.ReadLine(), out sbyte digit2);
+
+            Console.WriteLine("Enter 3rd digit to form a number:");
             bool isNum3 = sbyte.TryParse(Console.ReadLine(), out sbyte digit3);
+
+            Console.WriteLine("Enter 4th digit to form a number:");
             bool isNum4 = sbyte.TryParse(Console.ReadLine(), out sbyte digit4);
 
             if (isNum1 && isNum2 && isNum3 && isNum4)
             {
                 Console.WriteLine(
                 $"The result is: {NumberCreator.CreateNumberOfFourDigits(digit1, digit2, digit3, digit4)}");
+            }
+            else
+            {
+                if (!isNum1)
+                {
+                    Console.WriteLine("1st digit was not a number!");
+                }
+
+                if (!isNum2)
+                {
+                    Console.WriteLine("2nd digit was not a number!");
+                }
+
+                if (!isNum3)
+                {
+                    Console.WriteLine("3rd digit was not a number!");
+                }
+
+                if (!isNum4)
+                {
+                    Console.WriteLine("4th digit was not a number!");
+                }
             }
 
             Console.WriteLine("\nPress any key to exit...");
