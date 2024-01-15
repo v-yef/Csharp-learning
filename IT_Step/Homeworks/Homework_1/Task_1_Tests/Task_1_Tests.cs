@@ -6,12 +6,10 @@ namespace Task_1_Tests
     [TestFixture]
     public class Task_1_Tests
     {
-        [TestCase(-1, ExpectedResult = "Error! The number must be in the [1..100] range!")]
-        [TestCase(0, ExpectedResult = "Error! The number must be in the [1..100] range!")]
-        [TestCase(101, ExpectedResult = "Error! The number must be in the [1..100] range!")]
+        [TestCase(null, ExpectedResult = "")]
+        [TestCase(0, ExpectedResult = "Fizz Buzz")]
         [TestCase(15, ExpectedResult = "Fizz Buzz")]
         [TestCase(45, ExpectedResult = "Fizz Buzz")]
-        [TestCase(75, ExpectedResult = "Fizz Buzz")]
         [TestCase(9, ExpectedResult = "Fizz")]
         [TestCase(27, ExpectedResult = "Fizz")]
         [TestCase(33, ExpectedResult = "Fizz")]
@@ -21,8 +19,7 @@ namespace Task_1_Tests
         [TestCase(2, ExpectedResult = "2")]
         [TestCase(28, ExpectedResult = "28")]
         [TestCase(97, ExpectedResult = "97")]
-
-        public string CreateMessageBasedOnIntegerInput_ReturnsValidMessage(int input)
+        public string CreateMessageBasedOnIntegerInput_ReturnsValidMessage(int? input)
         {
             // Act
             return UserInputProcessor.CreateMessageBasedOnIntegerInput(input);
