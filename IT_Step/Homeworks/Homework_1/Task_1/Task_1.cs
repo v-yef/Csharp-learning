@@ -26,7 +26,7 @@ namespace Task_1
                 return;
             }
 
-            Console.WriteLine(UserInputProcessor.CreateMessageBasedOnIntegerInput(userNum.Value));
+            Console.WriteLine(UserInputProcessor.MakeMessageBasedOnIntegerInput(userNum.Value));
         }
     }
 }

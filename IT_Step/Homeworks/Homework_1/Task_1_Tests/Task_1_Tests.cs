@@ -19,10 +19,10 @@ namespace Task_1_Tests
         [TestCase(2, ExpectedResult = "2")]
         [TestCase(28, ExpectedResult = "28")]
         [TestCase(97, ExpectedResult = "97")]
-        public string CreateMessageBasedOnIntegerInput_ReturnsValidMessage(int? input)
+        public string MakeMessageBasedOnIntegerInput_ReturnsResult(int? input)
         {
             // Act
-            return UserInputProcessor.CreateMessageBasedOnIntegerInput(input);
+            return UserInputProcessor.MakeMessageBasedOnIntegerInput(input);
         }
     }
 }

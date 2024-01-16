@@ -14,10 +14,10 @@ namespace Task_3_Tests
         [TestCase(-5, 8, 9, 0, ExpectedResult = -5890)]
         [TestCase(7, 0, 0, 0, ExpectedResult = 7000)]
         [TestCase(9, -2, -3, -4, ExpectedResult = 9234)]
-        public int CreateNumberOfFourDigits_ReturnsNumber(sbyte num1, sbyte num2, sbyte num3, sbyte num4)
+        public int MakeNumberOfFourDigits_ReturnsResult(sbyte num1, sbyte num2, sbyte num3, sbyte num4)
         {
             // Act
-            return NumberCreator.CreateNumberOfFourDigits(num1, num2, num3, num4);
+            return NumberMaker.MakeNumberOfFourDigits(num1, num2, num3, num4);
         }
     }
 }

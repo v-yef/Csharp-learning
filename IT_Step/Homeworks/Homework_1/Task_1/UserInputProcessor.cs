@@ -40,7 +40,7 @@
             return result;
         }
 
-        public static string CreateMessageBasedOnIntegerInput(int? input)
+        public static string MakeMessageBasedOnIntegerInput(int? input)
         {
             string result;
 

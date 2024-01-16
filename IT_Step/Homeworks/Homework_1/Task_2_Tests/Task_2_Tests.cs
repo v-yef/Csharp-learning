@@ -15,10 +15,10 @@ namespace Task_2_Tests
         [TestCase(1000.555, 75.75, ExpectedResult = 757.920412)]
         [TestCase(999999.99999, 99.99, ExpectedResult = 999900)]
 
-        public double CalculatePercentPartOfNumber_ReturnsValidResult(double number, double percent)
+        public double CalculatePercentOfNumber_ReturnsResult(double number, double percent)
         {
             // Act
-            return UserInputProcessor.CalculatePercentPartOfNumber(number, percent);
+            return UserInputProcessor.CalculatePercentOfNumber(number, percent);
         }
     }
 }

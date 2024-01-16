@@ -45,7 +45,7 @@ namespace Task_3
             }
 
             Console.WriteLine(
-                $"The result is: {NumberCreator.CreateNumberOfFourDigits(
+                $"The result is: {NumberMaker.MakeNumberOfFourDigits(
                     digit1.Value,
                     digit2.Value,
                     digit3.Value,

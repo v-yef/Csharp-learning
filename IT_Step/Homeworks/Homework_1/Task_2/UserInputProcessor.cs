@@ -33,7 +33,7 @@
             return result;
         }
 
-        public static double CalculatePercentPartOfNumber(double number, double percent) =>
+        public static double CalculatePercentOfNumber(double number, double percent) =>
             Math.Abs(Math.Round(number * percent / 100, 6));
     }
 }

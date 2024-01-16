@@ -1,8 +1,8 @@
 ﻿namespace Task_3
 {
-    public static class NumberCreator
+    public static class NumberMaker
     {
-        public static int CreateNumberOfFourDigits(sbyte num1, sbyte num2, sbyte num3, sbyte num4)
+        public static int MakeNumberOfFourDigits(sbyte num1, sbyte num2, sbyte num3, sbyte num4)
         {
             bool isSigned = num1 < 0;
 

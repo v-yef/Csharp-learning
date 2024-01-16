@@ -32,7 +32,7 @@ namespace Task_2
             }
 
             Console.WriteLine("The result is: " +
-                UserInputProcessor.CalculatePercentPartOfNumber(number.Value, percentage.Value));
+                UserInputProcessor.CalculatePercentOfNumber(number.Value, percentage.Value));
         }
     }
 }
