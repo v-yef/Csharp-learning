@@ -10,8 +10,7 @@
 
             do
             {
-                Console.WriteLine($"Enter a double number " +
-                   $"OR press 'Q' to quit.");
+                Console.WriteLine($"Enter a double number OR press 'Q' to quit.");
 
                 userInput = Console.ReadLine();
 

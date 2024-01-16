@@ -4,7 +4,7 @@ namespace Task_3_Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    public class Task_3_Tests
+    public class UnitTests
     {
         [TestCase(-1, 2, 3, 4, ExpectedResult = -1234)]
         [TestCase(0, 0, 0, 0, ExpectedResult = 0)]

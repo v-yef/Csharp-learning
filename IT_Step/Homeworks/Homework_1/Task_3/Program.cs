@@ -12,7 +12,7 @@
 
 namespace Task_3
 {
-    internal static class Task_3
+    internal static class Program
     {
         static void Main(string[] args)
         {

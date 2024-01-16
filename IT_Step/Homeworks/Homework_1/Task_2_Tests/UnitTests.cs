@@ -4,7 +4,7 @@ namespace Task_2_Tests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    public class Task_2_Tests
+    public class UnitTests
     {
         [DefaultFloatingPointTolerance(6)]
         [TestCase(-10, -10.1, ExpectedResult = 1.01)]
