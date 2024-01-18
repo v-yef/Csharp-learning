@@ -158,8 +158,7 @@ namespace Task_1
             for (int i = 0; i < firstDimLen; i++)
             {
                 // Odd columns begin from index 1.
-                // (j < secondDimLen - 2) prevents getting beyond the array limits.
-                for (int j = 1; j < secondDimLen - 2; j += 2)
+                for (int j = 1; j < secondDimLen; j += 2)
                 {
                     if (float.IsNormal(array[i, j]))
                     {
