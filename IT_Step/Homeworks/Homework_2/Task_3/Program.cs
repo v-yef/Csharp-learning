@@ -4,8 +4,9 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : The user enters an arithmetic expression from the keyboard. The application should calculate its result.
-  It is necessary to follow only two operations: + and –.
+ Description : User enters an arithmetic expression of two integers with a
+               keyboard. The application must calculate its result. Implement
+               only two operations: + and –.
  ============================================================================
  */
 

@@ -4,11 +4,15 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : The user enters some text from the keyboard. The application must change the case of the first letter of each sentence to the letter y
-upper case. For example, if the user entered: today is a good day for walking. i will try to walk near the sea.
-  The result of the application: Today is a good day for walking. I will try to walk near the sea.
+ Description : User enters text with a keyboard. The application must display
+               the first letter of each sentence uppercased.
+               For example, if the user entered:
+               today is a good day for walking. i will try to walk near the sea.
+               The result must be:
+               Today is a good day for walking. I will try to walk near the sea.
  ============================================================================
  */
+
 namespace Task_4
 {
     internal static class Program
@@ -17,19 +21,30 @@ namespace Task_4
         {
             Console.WriteLine("Enter string: ");
 
-            string sInputStr = Console.ReadLine();
+            string? inputStr = Console.ReadLine();
 
-            for (int i = 0; i < sInputStr.Length; i++)
+            if (inputStr is null)
             {
-                // Первую букву в строке выводить как заглавную
+                return;
+            }
+
+            for (int i = 0; i < inputStr.Length; i++)
+            {
+                // The first letter is displayed in uppercase.
                 if (i == 0)
-                    Console.Write(char.ToUpper(sInputStr[i]));
-                // Первую букву после пробела с точкой выводить как заглавную
-                else if (i - 1 > 0 && sInputStr[i - 2] == '.')
-                    Console.Write(char.ToUpper(sInputStr[i]));
-                // в остальных случаях выводить буквы как они есть
+                {
+                    Console.Write(char.ToUpper(inputStr[i]));
+                }                 
+                // The first letter after whitespace or period is displayed in uppercase, too.
+                else if (((i - 1) is > 0) && (inputStr[i - 2] == '.'))
+                {
+                    Console.Write(char.ToUpper(inputStr[i]));
+                }
+                // Display letters as they are in all other cases.
                 else
-                    Console.Write(sInputStr[i]);
+                {
+                    Console.Write(inputStr[i]);
+                }          
             }
 
             Console.ReadLine();
