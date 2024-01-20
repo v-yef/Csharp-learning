@@ -4,9 +4,10 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create the "Shop" class. The following must be stored in the class fields: store name, address, store profile description,
-contact phone number, email. Implement class methods for data input, data output. Implement access to individual fields via
-  class methods.
+ Description : Create a "Shop" class storing the following data in its fields:
+               name, address, description, phone number, email. Implement class
+               methods for data input and output. Implement access to individual
+               fields.
  ============================================================================
  */
 
@@ -14,28 +15,37 @@ namespace Task_2
 {
     class MyShop
     {
-        public string m_sName_ { get; set; }
-        public string m_sAddress_ { get; set; }
-        public string m_sDescription_ { get; set; }
-        public string m_sPhoneNumber_ { get; set; }
-        public string m_sEmail_ { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Description { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         public MyShop()
         {
-            m_sName_ = "No name";
-            m_sAddress_ = "No address";
-            m_sDescription_ = "No description";
-            m_sPhoneNumber_ = "000-000-000";
-            m_sEmail_ = "No email";
+            Name = "No name";
+            Address = "No address";
+            Description = "No description";
+            PhoneNumber = "000-000-000";
+            Email = "No email";
         }
 
-        public MyShop(string _sName, string _sAddress, string _sDescription, string _sPhoneNumber, string _sEmail)
+        public MyShop(string name, string address, string description, string phoneNumber, string email)
         {
-            m_sName_ = _sName;
-            m_sAddress_ = _sAddress;
-            m_sDescription_ = _sDescription;
-            m_sPhoneNumber_ = _sPhoneNumber;
-            m_sEmail_ = _sEmail;
+            Name = name;
+            Address = address;
+            Description = description;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine("Name:        " + Name);
+            Console.WriteLine("Address:     " + Address);
+            Console.WriteLine("Description: " + Description);
+            Console.WriteLine("PhoneNumber: " + PhoneNumber);
+            Console.WriteLine("Email:       " + Email);
         }
     }
 
@@ -45,36 +55,25 @@ namespace Task_2
         {
             MyShop shop_1 = new MyShop();
 
-            Console.WriteLine("Магазин №1 (начальный) :");
-            Console.WriteLine(shop_1.m_sName_);
-            Console.WriteLine(shop_1.m_sAddress_);
-            Console.WriteLine(shop_1.m_sDescription_);
-            Console.WriteLine(shop_1.m_sPhoneNumber_);
-            Console.WriteLine(shop_1.m_sEmail_);
+            Console.WriteLine("Shop №1 (initial data) :");
+            shop_1.DisplayInfo();
             Console.WriteLine();
 
-            shop_1.m_sName_ = "Новое имя";
-            shop_1.m_sAddress_ = "Новый адрес";
-            shop_1.m_sDescription_ = "Новое описание";
-            shop_1.m_sPhoneNumber_ = "123-456-789";
-            shop_1.m_sEmail_ = "Новый email";
+            shop_1.Name = "New name";
+            shop_1.Address = "New address";
+            shop_1.Description = "New description";
+            shop_1.PhoneNumber = "123-456-789";
+            shop_1.Email = "New email";
 
-            Console.WriteLine("Магазин №1 (обновленный) :");
-            Console.WriteLine(shop_1.m_sName_);
-            Console.WriteLine(shop_1.m_sAddress_);
-            Console.WriteLine(shop_1.m_sDescription_);
-            Console.WriteLine(shop_1.m_sPhoneNumber_);
-            Console.WriteLine(shop_1.m_sEmail_);
+            Console.WriteLine("Shop №1 (updated data) :");
+            shop_1.DisplayInfo();
             Console.WriteLine();
 
-            MyShop shop_2 = new MyShop("Мой магазин", "Адрес магазина", "Описание магазина", "987-654-321", "Email магазина");
+            MyShop shop_2 = new MyShop("My shop", "Address", "Description", "987-654-321", "Email");
 
-            Console.WriteLine("Магазин №2 (начальный) :");
-            Console.WriteLine(shop_2.m_sName_);
-            Console.WriteLine(shop_2.m_sAddress_);
-            Console.WriteLine(shop_2.m_sDescription_);
-            Console.WriteLine(shop_2.m_sPhoneNumber_);
-            Console.WriteLine(shop_2.m_sEmail_);
+            Console.WriteLine("Shop №2 (initial data) :");
+            shop_2.DisplayInfo();
+            Console.WriteLine();
 
             Console.ReadLine();
         }

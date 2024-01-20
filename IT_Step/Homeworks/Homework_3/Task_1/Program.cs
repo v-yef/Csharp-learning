@@ -4,34 +4,43 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create a "Website" class. The following must be stored in the class fields: site name, site path, site description, site ip address.
-Implement class methods for data input, data output. Implement access to individual fields through class methods.
+ Description : Create a "Website" classstoring the following data in its fields:
+               name, web-adress, description, ip-address. Implement class methods
+               for data input and output. Implement access to individual fields.
  ============================================================================
  */
 
 namespace Task_1
 {
-    class MySite
+    class MyWebSite
     {
-        public string m_sName_ { get; set; }
-        public string m_sWebAddress_ { get; set; }
-        public string m_sIpAddress_ { get; set; }
-        public string m_sDescription_ { get; set; }
+        public string Name { get; set; }
+        public string WebAddress { get; set; }
+        public string IpAddress { get; set; }
+        public string Description { get; set; }
 
-        public MySite()
+        public MyWebSite()
         {
-            m_sName_ = "No name";
-            m_sWebAddress_ = "No web-address";
-            m_sIpAddress_ = "No ip-address";
-            m_sDescription_ = "No description";
+            Name = "No name";
+            WebAddress = "No web-address";
+            IpAddress = "No ip-address";
+            Description = "No description";
         }
 
-        public MySite(string _sName, string _sWebAddress, string _sIpAddress, string _sDescription)
+        public MyWebSite(string name, string webAddress, string ipAddress, string description)
         {
-            m_sName_ = _sName;
-            m_sWebAddress_ = _sWebAddress;
-            m_sIpAddress_ = _sIpAddress;
-            m_sDescription_ = _sDescription;
+            Name = name;
+            WebAddress = webAddress;
+            IpAddress = ipAddress;
+            Description = description;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine("Name:        " + Name);
+            Console.WriteLine("WebAddress:  " + WebAddress);
+            Console.WriteLine("IpAddress:   " + IpAddress);
+            Console.WriteLine("Description: " + Description);
         }
     }
 
@@ -39,34 +48,26 @@ namespace Task_1
     {
         static void Main(string[] args)
         {
-            MySite site_1 = new MySite();
+            MyWebSite site_1 = new MyWebSite();
 
-            Console.WriteLine("Сайт №1 (начальный) :");
-            Console.WriteLine(site_1.m_sName_);
-            Console.WriteLine(site_1.m_sWebAddress_);
-            Console.WriteLine(site_1.m_sIpAddress_);
-            Console.WriteLine(site_1.m_sDescription_);
+            Console.WriteLine("Website №1 (initial data) :");
+            site_1.DisplayInfo();
             Console.WriteLine();
 
-            site_1.m_sName_ = "Новое имя";
-            site_1.m_sWebAddress_ = "Новый веб-адрес";
-            site_1.m_sIpAddress_ = "Новый ip-адрес";
-            site_1.m_sDescription_ = "Новое описание";
+            site_1.Name = "New name";
+            site_1.WebAddress = "New web-address";
+            site_1.IpAddress = "New ip-address";
+            site_1.Description = "New description";
 
-            Console.WriteLine("Сайт №1 (обновленный) :");
-            Console.WriteLine(site_1.m_sName_);
-            Console.WriteLine(site_1.m_sWebAddress_);
-            Console.WriteLine(site_1.m_sIpAddress_);
-            Console.WriteLine(site_1.m_sDescription_);
+            Console.WriteLine("Website №1 (updated data) :");
+            site_1.DisplayInfo();
             Console.WriteLine();
 
-            MySite site_2 = new MySite("Мой сайт", "https://mywebsite.com", "192.168.0.1", "Очень интересный сайт");
+            MyWebSite site_2 = new MyWebSite("My website", "https://mywebsite.com", "192.168.0.1", "Interesting website");
 
-            Console.WriteLine("Сайт №2 (начальный) :");
-            Console.WriteLine(site_2.m_sName_);
-            Console.WriteLine(site_2.m_sWebAddress_);
-            Console.WriteLine(site_2.m_sIpAddress_);
-            Console.WriteLine(site_2.m_sDescription_);
+            Console.WriteLine("Website №2 (initial data) :");
+            site_2.DisplayInfo();
+            Console.WriteLine();
 
             Console.ReadLine();
         }
