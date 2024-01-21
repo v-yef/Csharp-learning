@@ -4,11 +4,14 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Program the Money class (class object operates with one currency) to work with money.
-  The classroom should have: a field for storing a whole part of money (dollars, euros, hryvnias, etc.) and a field
-  for storing pennies (cents, eurocents, pennies, etc.). Implement methods of displaying the amount on the screen, tasks
-  values of parts. Based on the Money class, create a Product class to work with a product or commodity. Implement a method that allows
-  reduce the price by a given number. For each of the classes, implement the necessary methods and fields.
+ Description : Create a Money class, which object will work on a single currency.
+               The class must have: a field for storing a whole part of currency
+               (dollars, euros, etc.) and a field for storing pennies (cents, 
+               pennies, etc.). Make it possible to display the total value and
+               values of parts. After that create a derived Product class to work
+               with a product. Implement a method that allows to reduce the price
+               by a given value. For each of the classes, implement the necessary
+               methods and fields.
  ============================================================================
  */
 
@@ -16,120 +19,122 @@ namespace Task_1
 {
     class Money
     {
-        private int m_iWholePart_;
-        private int m_iFractionPart_;
+        private int _wholePart;
+        private int _fractionalPart;
 
         public Money() : this(0, 0) { }
 
-        public Money(int _WholePart, int _FractionPart)
+        public Money(int wholePart, int fractionalPart)
         {
-            if (_WholePart < 0)
+            if (wholePart < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(
+                    nameof(wholePart), wholePart, "Currency values cannot be negative!");
             }
 
-            if (_FractionPart < 0)
+            if (fractionalPart < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(
+                    nameof(fractionalPart), fractionalPart, "Currency values cannot be negative!");
             }
 
-            m_iWholePart_ += _WholePart;
+            _wholePart = wholePart;
 
-            if (_FractionPart <= 99)
+            if (fractionalPart <= 99)
             {
-                m_iFractionPart_ = _FractionPart;
+                _fractionalPart = fractionalPart;
             }
             else
             {
-                // Если кол-во разменных монет > 99, то перевести его в целую часть
-                int iTemp = _FractionPart / 100;
-                m_iWholePart_ += iTemp;
-                m_iFractionPart_ += _FractionPart - iTemp * 100;
+                // If the number of change coins is > 99, convert it to a whole part
+                normalizeParts();
             }
-
         }
 
         public int WholePart
         {
-            get { return m_iWholePart_; }
+            get => _wholePart;
             set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(
+                         nameof(value), value, "Currency values cannot be negative!");
                 }
 
-                m_iWholePart_ = value;
+                _wholePart = value;
             }
         }
 
-        public int FractionPart
+        public int FractionalPart
         {
-            get { return m_iFractionPart_; }
+            get => _fractionalPart;
             set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(
+                         nameof(value), value, "Currency values cannot be negative!");
                 }
 
-                // Добавить кол-во разменных монет к имеющемуся
-                m_iFractionPart_ = value;
+                _fractionalPart = value;
 
-                // Если кол-во разменных монет стало > 99, то перевести его в целую часть
-                if (m_iFractionPart_ > 99)
+                // If the number of change coins became > 99, convert it to a whole part
+                if (_fractionalPart > 99)
                 {
-                    int iTemp = m_iFractionPart_ / 100;
-                    m_iWholePart_ += iTemp;
-                    m_iFractionPart_ += value - iTemp * 100;
-
+                    normalizeParts();
                 }
             }
         }
 
-        public void Print()
-        {
-            Console.WriteLine(WholePart + "." + FractionPart);
+        public void PrintAmount() => Console.WriteLine(_wholePart + "." + _fractionalPart);
 
-            return;
+        private void normalizeParts()
+        {
+            _wholePart += _fractionalPart / 100;
+            _fractionalPart %= 100;
         }
     }
 
     class Product : Money
     {
-        private string m_sName_;
+        private readonly string _productName;
 
         public Product()
            : base(0, 0)
         {
-            m_sName_ = "Название не указано";
+            _productName = "Default product name";
         }
 
-        public Product(string _Name, int _WholePart, int _FractionPart)
-            : base(_WholePart, _FractionPart)
+        public Product(string name, int wholePart, int fractionalPart)
+            : base(wholePart, fractionalPart)
         {
-            m_sName_ = _Name;
+            _productName = name;
         }
+
+        ///////////////////////////////////////////////////////////////////////
 
         public void SetStartPrice()
         {
-            Console.WriteLine("Начальная цена продукта :");
+            int wholePart, fractionalPart;
 
-            Console.WriteLine("Целые единицы :");
-            int WholePart = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("INITIAL PRODUCT PRICE :");
 
-            Console.WriteLine("Разменные единицы :");
-            int FractionPart = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Whole part :");
 
-            SetStartPrice(WholePart, FractionPart);
+            int.TryParse(Console.ReadLine(), out wholePart);
 
-            return;
+            Console.WriteLine("Fractional part :");
+
+            int.TryParse(Console.ReadLine(), out fractionalPart);
+
+            SetPrice(wholePart, fractionalPart);
         }
 
-        public void SetStartPrice(int _iWholePart, int _iFractionPart)
+        public void SetPrice(int wholePart, int fractionalPart)
         {
-            base.WholePart = _iWholePart;
-            base.FractionPart = _iFractionPart;
+            base.WholePart = wholePart;
+            base.FractionalPart = fractionalPart;
         }
 
         public void IncreasePrice()
@@ -148,7 +153,7 @@ namespace Task_1
         public void IncreasePrice(int _iWholePart, int _iFractionPart)
         {
             base.WholePart += _iWholePart;
-            base.FractionPart += _iFractionPart;
+            base.FractionalPart += _iFractionPart;
         }
 
         public void DecreasePrice()
@@ -167,18 +172,15 @@ namespace Task_1
         public void DecreasePrice(int _iWholePart, int _iFractionPart)
         {
             base.WholePart -= _iWholePart;
-            base.FractionPart -= _iFractionPart;
+            base.FractionalPart -= _iFractionPart;
         }
 
         public string GetCurrentPrice()
         {
-            return Convert.ToString(base.WholePart) + "." + Convert.ToString(base.FractionPart);
+            return Convert.ToString(base.WholePart) + "." + Convert.ToString(base.FractionalPart);
         }
 
-        public string GetName()
-        {
-            return m_sName_;
-        }
+        public string GetName() => _productName;
     }
 
     internal static class Program
