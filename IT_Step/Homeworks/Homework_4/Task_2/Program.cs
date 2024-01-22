@@ -4,8 +4,10 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create an abstract Worker base class with the Print() method. Create four derived classes: President,
-Security, Manager, Engineer. Override the Print() method to print the information that corresponds to each employee type.
+ Description : Create an abstract base class Worker with the Print() method.
+               Then create four derived classes: President, Security, Manager,
+               Engineer. Override the Print() method to print the information
+               of each employee type.
  ============================================================================
  */
 
@@ -13,62 +15,74 @@ namespace Task_2
 {
     abstract class Worker
     {
-        string Name { get; set; }
-        string Surname { get; set; }
-        int Salary { get; set; }
+        private readonly string firstName;
+        private readonly string lastName;
+        private readonly int salary;
 
-        protected Worker(string _Name, string _Surname, int _Salary)
+        protected Worker(string firstName, string lastName, int salary)
         {
-            Name = _Name;
-            Surname = _Surname;
-            Salary = _Salary;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.salary = salary;
         }
 
         public virtual void Print()
         {
-            Console.WriteLine("Имя : " + Name);
-            Console.WriteLine("Фамилия : " + Surname);
-            Console.WriteLine("Зарплата : " + Salary);
+            Console.WriteLine("First name : " + firstName);
+            Console.WriteLine("Last name  : " + lastName);
+            Console.WriteLine("Salary     : " + salary);
         }
     }
 
     class President : Worker
     {
-        public President(string _Name, string _Surname, int _Salary) : base(_Name, _Surname, _Salary) { }
+        public President(string firstName, string lastName, int salary)
+            : base(firstName, lastName, salary)
+        { }
+
         public override void Print()
         {
             base.Print();
-            Console.WriteLine("Должность : Президент");
+            Console.WriteLine("Role       : President");
         }
     }
 
     class Security : Worker
     {
-        public Security(string _Name, string _Surname, int _Salary) : base(_Name, _Surname, _Salary) { }
+        public Security(string firstName, string lastName, int salary)
+            : base(firstName, lastName, salary)
+        { }
+
         public override void Print()
         {
             base.Print();
-            Console.WriteLine("Должность : Охранник");
+            Console.WriteLine("Role       : Security");
         }
     }
 
     class Manager : Worker
     {
-        public Manager(string _Name, string _Surname, int _Salary) : base(_Name, _Surname, _Salary) { }
+        public Manager(string firstName, string lastName, int salary)
+            : base(firstName, lastName, salary)
+        { }
+
         public override void Print()
         {
             base.Print();
-            Console.WriteLine("Должность : Менеджер");
+            Console.WriteLine("Role       : Manager");
         }
     }
 
     class Engineer : Worker
     {
-        public Engineer(string _Name, string _Surname, int _Salary) : base(_Name, _Surname, _Salary) { }
+        public Engineer(string firstName, string lastName, int salary)
+            : base(firstName, lastName, salary)
+        { }
+
         public override void Print()
         {
             base.Print();
-            Console.WriteLine("Должность : Инженер");
+            Console.WriteLine("Role       : Engineer");
         }
     }
 
@@ -76,12 +90,12 @@ namespace Task_2
     {
         static void Main(string[] args)
         {
-            Worker[] workers = new Worker[4];
-
-            workers[0] = new President("Имя_1", "Фамилия_1", 10000);
-            workers[1] = new Security("Имя_2", "Фамилия_2", 3000);
-            workers[2] = new Manager("Имя_3", "Фамилия_3", 6000);
-            workers[3] = new Engineer("Имя_4", "Фамилия_4", 5000);
+            Worker[] workers = [
+                new President("John", "Johnson", 10000),
+                new Security("Kevin", "Kevinson", 3000),
+                new Manager("Peter", "Peterson", 6000),
+                new Engineer("Donald", "Donaldson", 5000)
+                ];
 
             foreach (var worker in workers)
             {
