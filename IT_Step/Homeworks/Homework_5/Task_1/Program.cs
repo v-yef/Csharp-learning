@@ -4,11 +4,12 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : In one of the previous practical tasks, you created the "Shop" class. Add to an already created class
-  information about the store area. Perform load + (to increase the area of ​​the store by the specified size),
-  — (to reduce the area of the store by the specified size), == (check for the equality of the areas of the stores),
-  < and > (checking stores smaller or larger in area), != and Equals. Use the property mechanism
-  class fields.
+ Description : In one of the previous tasks, you created the "Shop" class. Now add
+               the information about the shop's area to this class. Overload the 
+               "+" and "—" operators (to increase and reduce the area of ​​the store
+               by the specified size), "==", "!=", "<" and ">" operators (to check
+               the relations of the areas of two stores). Use the property mechanism
+               of class fields.
  ============================================================================
  */
 
@@ -21,104 +22,115 @@ namespace Task_1
         public string Description { get; set; } = "No description";
         public string PhoneNumber { get; set; } = "000-000-000";
         public string Email { get; set; } = "No email";
-        public float Square { get; set; } = 0.0f;
+        public float Area { get; set; } = 0.0f;
 
         public MyShop() { }
 
-        public MyShop(string _Name, string _Address, string _Description, string _PhoneNumber, string _Email, float _Square)
+        public MyShop(string name, string address, string description, string phoneNumber,
+            string email, float area)
         {
-            Name = _Name;
-            Address = _Address;
-            Description = _Description;
-            PhoneNumber = _PhoneNumber;
-            Email = _Email;
-            Square = _Square;
+            Name = name;
+            Address = address;
+            Description = description;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            Area = area;
         }
 
-        // Оператор + (увеличивает площадь на указанный размер)
-        public static MyShop operator +(MyShop _Shop, float _Square)
+        public static MyShop operator +(MyShop shop, float area)
         {
             return new MyShop
             {
-                Square = _Shop.Square + _Square
+                Area = shop.Area + area
             };
         }
 
-        // Оператор - (уменьшает площадь на указанный размер)
         public static MyShop operator -(MyShop _Shop, float _Square)
         {
-            if (_Shop.Square - _Square < 0)
+            if (_Shop.Area - _Square < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
             return new MyShop
             {
-                Square = _Shop.Square - _Square
+                Area = _Shop.Area - _Square
             };
         }
 
-        // Оператор == (сравнивает магазины по площади)
-        public static bool operator ==(MyShop _Shop_1, MyShop _Shop_2)
+        public static bool operator ==(MyShop shop_1, MyShop shop_2) =>
+            shop_1.Area == shop_2.Area;
+
+        public static bool operator !=(MyShop shop_1, MyShop shop_2) =>
+            shop_1.Area != shop_2.Area;
+
+        public static bool operator >(MyShop shop_1, MyShop shop_2) =>
+            shop_1.Area > shop_2.Area;
+
+        public static bool operator <(MyShop shop_1, MyShop shop_2) =>
+            shop_1.Area < shop_2.Area;
+
+        public override bool Equals(object? obj)
         {
-            return _Shop_1.Square == _Shop_2.Square;
+            if (obj is null)
+            {
+                return false;
+            }
+
+            MyShop? shop = obj as MyShop;
+
+            if (shop is null)
+            {
+                return false;
+            }
+
+            return this.ToString() == obj.ToString();
         }
 
-        // Оператор != (сравнивает магазины по площади)
-        public static bool operator !=(MyShop _Shop_1, MyShop _Shop_2)
-        {
-            return _Shop_1.Square != _Shop_2.Square;
-        }
+        public override int GetHashCode() =>
+            this.ToString().GetHashCode();
 
-        // Оператор > (сравнивает магазины по площади)
-        public static bool operator >(MyShop _Shop_1, MyShop _Shop_2)
-        {
-            return _Shop_1.Square > _Shop_2.Square;
-        }
-
-        // Оператор < (сравнивает магазины по площади)
-        public static bool operator <(MyShop _Shop_1, MyShop _Shop_2)
-        {
-            return _Shop_1.Square < _Shop_2.Square;
-        }
-
-        public override bool Equals(object _Shop)
-        {
-            return this.ToString() == _Shop.ToString();
-        }
-
-        public override int GetHashCode()
-        {
-            return this.ToString().GetHashCode();
-        }
-
-        public void Print()
-        {
-            Console.WriteLine(Name);
-            Console.WriteLine(Address);
-            Console.WriteLine(Description);
-            Console.WriteLine(PhoneNumber);
-            Console.WriteLine(Email);
-            Console.WriteLine(Square);
-            Console.WriteLine();
-        }
+        public void Print() =>
+            Console.WriteLine($"{Name}\r" +
+                        $"{Address}\r" +
+                        $"{Description}\r" +
+                        $"{PhoneNumber}\r " +
+                        $" {Email}\r " +
+                        $" {Area} \r");
     }
 
     internal static class Program
     {
         static void Main(string[] args)
         {
-            MyShop Shop_1 = new MyShop("Магазин_1", "Адрес_1", "Описание_1", "000-000-001", "Email_1", 10.0f);
-            MyShop Shop_2 = new MyShop("Магазин_2", "Адрес_2", "Описание_2", "000-000-002", "Email_2", 10.0f);
+            MyShop Shop_1 = new MyShop(
+                "Shop_1",
+                "Address_1",
+                "Description_1",
+                "000-000-001",
+                "Email_1",
+                10.0f);
+            MyShop Shop_2 = new MyShop(
+                "Shop_2",
+                "Address_2",
+                "Description_2",
+                "000-000-002",
+                "Email_2",
+                10.0f);
 
             Shop_1.Print();
             Shop_2.Print();
 
-            Console.WriteLine(Shop_1.Name + " == " + Shop_2.Name + " : " + Convert.ToString(Shop_1 == Shop_2));
-            Console.WriteLine(Shop_1.Name + " != " + Shop_2.Name + " : " + Convert.ToString(Shop_1 == Shop_2));
-            Console.WriteLine(Shop_1.Name + " > " + Shop_2.Name + " : " + Convert.ToString(Shop_1 == Shop_2));
-            Console.WriteLine(Shop_1.Name + " < " + Shop_2.Name + " : " + Convert.ToString(Shop_1 == Shop_2));
-            Console.WriteLine(Shop_1.Name + " equals " + Shop_2.Name + " : " + Convert.ToString(Shop_1.Equals(Shop_2)));
+            Console.WriteLine(
+                $"{Shop_1.Name} == {Shop_2.Name} : {Shop_1 == Shop_2}.");
+            Console.WriteLine(
+                $"{Shop_1.Name} != {Shop_2.Name} : {Shop_1 == Shop_2}.");
+            Console.WriteLine(
+                $"{Shop_1.Name} > {Shop_2.Name} : {Shop_1 == Shop_2}.");
+            Console.WriteLine(
+                $"{Shop_1.Name} < {Shop_2.Name} : {Shop_1 == Shop_2}.");
+            Console.WriteLine(
+                $"{Shop_1.Name} equals {Shop_2.Name} : {Shop_1.Equals(Shop_2)}.");
             Console.WriteLine();
 
             MyShop Shop_3 = Shop_2 + 5.0f;
