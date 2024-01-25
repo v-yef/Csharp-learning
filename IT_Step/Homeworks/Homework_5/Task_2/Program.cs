@@ -4,15 +4,15 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create a Reading List app. The application should allow adding books to the list, removing books
-  from the list, check if the book is in the list, etc. Use the mechanism of properties, operator loading,
-indexers.
+ Description : Create a "Reading List" app. The application must allow to add
+               and removing books from the list, to check if the book is in
+               the list, etc. Use the mechanism of properties, operator
+               overloading, indexers.
  ============================================================================
  */
 
 namespace Task_2
 {
-    // Класс "Книга" - элемент массива книг
     class Book
     {
         public string BookName { get; set; }
@@ -20,7 +20,6 @@ namespace Task_2
         public Book(string _BookName) { BookName = _BookName; }
     }
 
-    // Класс "Список книг"
     class BookList
     {
         Book[] bookList;
@@ -80,12 +79,8 @@ namespace Task_2
         }
 
         // Метод удаления книги по индексу
-        public void RemoveBook(int _Index)
-        {
+        public void RemoveBook(int _Index)=>
             bookList[_Index].BookName = "< Пусто >";
-
-            return;
-        }
     }
 
     internal static class Program
