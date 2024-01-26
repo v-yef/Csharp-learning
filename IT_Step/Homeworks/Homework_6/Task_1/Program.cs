@@ -4,13 +4,23 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Implement classes House, Basement, Walls, Door, Window, Roof, Worker, TeamLeader, Team and interfaces IWorker, IPart.
-  All parts of the house must implement the IPart interface; a basic IWorker interface is provided for workers and the foreman.
-  A team of builders (Team) is building a house (House). A house consists of a foundation (Basement), walls (Wall), windows (Window), doors (Door), roof (Part).
-  According to the project, the house should have 1 foundation, 4 walls, 1 door, 4 windows and 1 roof.
-  The team begins work, and the builders successively “build” the house, starting from the foundation. Every builder does not know in advance
-where the previous stage of construction ended, so he “checks” what has already been built and continues work. If the game
-  the foreman (TeamLeader) enters, he does not build, but generates a report on what has already been built and what part of the work has been completed.
+ Description : Create classes "House", "Basement", "Walls", "Door", "Window",
+               "Roof", "Worker", "TeamLeader", "Team" and interfaces "IWorker",
+               "IPart". All parts of the house must implement the "IPart"
+               interface. The "IWorker" interface is implemented by workers
+               and the team leader. A group of workers ("Team") is building a
+               house ("House"). The house consists of a foundation ("Basement"),
+               walls ("Wall"), windows ("Window"), doors ("Door"), roof (Roof).
+               According to the project, the house has 1 foundation, 4 walls,
+               1 door, 4 windows and 1 roof. The team begins to work, and the
+               workers “build” the house in logical order, starting from the
+               foundation. Each worker does not know in advance the previous
+               stage of construction, so he “checks” what was built and continues
+               the work. When the work is complete the team leader comes - he
+               does not build anything, but generates a report on what was built
+               and what part of the work has been completed. All team members
+               are called to work in random order and only one member can be
+               busy at the moment.
  ============================================================================
  */
 
@@ -27,7 +37,7 @@ namespace Task_1
         // Метод ввода информации о части. Для каждого наследника свой
         public virtual void Print()
         {
-            Console.WriteLine("Построено : " + Signature);
+            Console.WriteLine("Built : " + Signature);
         }
     }
 
@@ -35,7 +45,7 @@ namespace Task_1
     {
         public override void Print()
         {
-            Console.Write("Фундамент. ");
+            Console.Write("Basement. ");
             base.Print();
         }
     }
@@ -44,7 +54,7 @@ namespace Task_1
     {
         public override void Print()
         {
-            Console.Write("Стена. ");
+            Console.Write("Wall. ");
             base.Print();
         }
     }
@@ -53,7 +63,7 @@ namespace Task_1
     {
         public override void Print()
         {
-            Console.Write("Дверь. ");
+            Console.Write("Door. ");
             base.Print();
         }
     }
@@ -62,7 +72,7 @@ namespace Task_1
     {
         public override void Print()
         {
-            Console.Write("Окно. ");
+            Console.Write("Window. ");
             base.Print();
         }
     }
@@ -71,7 +81,7 @@ namespace Task_1
     {
         public override void Print()
         {
-            Console.Write("Крыша. ");
+            Console.Write("Roof. ");
             base.Print();
         }
     }
