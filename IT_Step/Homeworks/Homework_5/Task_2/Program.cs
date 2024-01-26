@@ -15,33 +15,36 @@ namespace Task_2
 {
     class Book
     {
-        public string BookName { get; set; }
+        public string Name { get; set; }
 
-        public Book(string _BookName) { BookName = _BookName; }
+        public Book(string name)
+        {
+            Name = name;
+        }
     }
 
     class BookList
     {
-        Book[] bookList;
+        private readonly Book[] bookList;
 
-        public BookList(int _BooksNumber)
+        public BookList(int booksCount)
         {
-            bookList = new Book[_BooksNumber];
+            bookList = new Book[booksCount];
         }
 
         public int Length
         {
-            get { return bookList.Length; }
+            get => bookList.Length;
         }
 
         // Индексатор массива книг для поиска и вставки по индексу
-        public Book this[int _Index]
+        public Book this[int searchedIndex]
         {
             get
             {
-                if (_Index >= 0 && _Index < bookList.Length)
+                if (searchedIndex >= 0 && searchedIndex < bookList.Length)
                 {
-                    return bookList[_Index];
+                    return bookList[searchedIndex];
                 }
                 else
                 {
@@ -51,9 +54,9 @@ namespace Task_2
 
             set
             {
-                if (_Index >= 0 && _Index < bookList.Length)
+                if (searchedIndex >= 0 && searchedIndex < bookList.Length)
                 {
-                    bookList[_Index] = value;
+                    bookList[searchedIndex] = value;
                 }
                 else
                 {
@@ -63,13 +66,13 @@ namespace Task_2
         }
 
         // Индексатор массива книг для поиска по названию
-        public int this[string _BookName]
+        public int this[string searchedName]
         {
             get
             {
-                if (Array.FindIndex(bookList, book => book.BookName == _BookName) >= 0)
+                if (Array.FindIndex(bookList, book => book.Name == searchedName) >= 0)
                 {
-                    return Array.FindIndex(bookList, book => book.BookName == _BookName);
+                    return Array.FindIndex(bookList, book => book.Name == searchedName);
                 }
                 else
                 {
@@ -79,8 +82,8 @@ namespace Task_2
         }
 
         // Метод удаления книги по индексу
-        public void RemoveBook(int _Index)=>
-            bookList[_Index].BookName = "< Пусто >";
+        public void RemoveBook(int _Index) =>
+            bookList[_Index].Name = "< Пусто >";
     }
 
     internal static class Program
@@ -99,7 +102,7 @@ namespace Task_2
 
                 for (int i = 0; i < bookList.Length; i++)
                 {
-                    Console.WriteLine(bookList[i].BookName);
+                    Console.WriteLine(bookList[i].Name);
                 }
                 Console.WriteLine();
 
@@ -108,16 +111,16 @@ namespace Task_2
 
                 for (int i = 0; i < bookList.Length; i++)
                 {
-                    Console.WriteLine(bookList[i].BookName);
+                    Console.WriteLine(bookList[i].Name);
                 }
                 Console.WriteLine();
 
                 // Записать книгу по индексу 2
-                bookList[2].BookName = "Книга 555";
+                bookList[2].Name = "Книга 555";
 
                 for (int i = 0; i < bookList.Length; i++)
                 {
-                    Console.WriteLine(bookList[i].BookName);
+                    Console.WriteLine(bookList[i].Name);
                 }
                 Console.WriteLine();
 
