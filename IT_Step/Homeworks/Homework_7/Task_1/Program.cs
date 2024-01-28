@@ -4,14 +4,17 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Write an application that will display simple geometric shapes specified by the user in the console.
-  The user selects a shape and sets its location on the screen, as well as its size and color using a menu.
-  All user-defined shapes are displayed simultaneously on the screen.
-  Shapes (rectangle, rhombus, triangle, polygon) are drawn with asterisks or other symbols.
-  To implement the program, it is necessary to develop a class hierarchy (consider the possibility of abstraction).
-  To store all user-defined shapes, create a “Collection of geometric shapes” class with the “Display all shapes” method.
-  To display all the shapes using the specified method, you need to use the foreach operator, for which in the “Collection of geometric shapes” class
-  it is necessary to implement the appropriate interfaces.
+ Description : Write a program to display user-specified geometric shapes in the
+               console. The user selects a shape's type, position, size and color
+               using a menu. All user-defined shapes must be displayed on the
+               screen simultaneously. Shapes (rectangle, rhombus, triangle,
+               polygon) are drawn with asterisks or other symbols. To write the
+               program, it is necessary to build a class hierarchy (consider the
+               possibility of abstraction). To store user-defined shapes create
+               a “Collection of geometric shapes” class with the “Display all
+               shapes” method. To display all shapes using the specified method,
+               you need to use the foreach operator, for which you must implement
+               the appropriate interfaces.
  ============================================================================
  */
 
@@ -19,119 +22,44 @@ using System.Collections;
 
 namespace Task_1
 {
-    class Menu
+    enum Color
     {
-        public static int VerticalMenu(string[] elements)
-        {
-            int maxLen = 0;
-
-            foreach (var item in elements)
-            {
-                if (item.Length > maxLen)
-                    maxLen = item.Length;
-            }
-
-            ConsoleColor bg = Console.BackgroundColor;
-            ConsoleColor fg = Console.ForegroundColor;
-
-            int x = Console.CursorLeft;
-            int y = Console.CursorTop;
-            //Console.CursorVisible = false;
-
-            int pos = 0;
-
-            while (true)
-            {
-
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    Console.CursorVisible = false;
-                    Console.SetCursorPosition(x, y + i);
-
-                    if (i == pos)
-                    {
-                        Console.BackgroundColor = fg;
-                        Console.ForegroundColor = bg;
-                    }
-                    else
-                    {
-                        Console.BackgroundColor = bg;
-                        Console.ForegroundColor = fg;
-                    }
-
-                    Console.Write(elements[i].PadRight(maxLen));
-                }
-
-                ConsoleKey consoleKey = Console.ReadKey().Key;
-
-                switch (consoleKey)
-                {
-                    case ConsoleKey.Enter:
-                        return pos;
-                    //break;
-
-                    case ConsoleKey.Escape:
-                        return elements.Length - 1;
-                    //break;
-
-                    case ConsoleKey.UpArrow:
-                        if (pos > 0)
-                            pos--;
-                        break;
-
-                    case ConsoleKey.DownArrow:
-                        if (pos < elements.Length - 1)
-                            pos++;
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        }
+        Gray = 7,
+        Blue = 9,
+        Green = 10,
+        Red = 12,
+        Yellow = 14,
+        White = 15
     }
 
-    // Цвет фигуры
-    enum ShapeColor
+    enum ScaleFactor
     {
-        Gray = 7 /*Серый*/,
-        Blue = 9 /*Синий*/,
-        Green = 10 /*Зеленый*/,
-        Red = 12 /*Красный*/,
-        Yellow = 14 /*Желтый*/,
-        White = 15 /*Белый*/
-    }
-    // Размер фигуры (множитель размера)
-    enum ShapeScale
-    {
-        Small = 1 /*Маленький*/,
-        Medium = 2 /*Средний*/,
-        Big = 3 /*Большой*/
+        Small = 1,
+        Medium = 2,
+        Big = 3
     }
 
-    // Расположение фигуры
-    enum ShapePosition
+    enum Position
     {
-        UpperLeft = 0 /*Сверху слева*/,
-        UpperCentre = 1 /*Сверху по центру*/,
-        UpperRight = 2 /*Сверху справа*/,
-        CentreLeft = 3 /*Слева по центру*/,
-        CentreCentre = 4 /*По центру*/,
-        CentreRight = 5 /*Справа по центру*/,
-        LowerLeft = 6 /*Снизу слева*/,
-        LowerCentre = 7 /*Снизу по центру*/,
-        LowerRight = 8 /*Снизу справа*/
+        UpperLeft = 0,
+        UpperCentre = 1,
+        UpperRight = 2,
+        CentreLeft = 3,
+        CentreCentre = 4,
+        CentreRight = 5,
+        LowerLeft = 6,
+        LowerCentre = 7,
+        LowerRight = 8
     }
 
-    // Класс "Фигура". Базовый для всех фигур
     abstract class Shape
     {
         protected int XCoord;
         protected int YCoord;
 
-        public ShapeColor Color { get; set; }
-        public ShapeScale Scale { get; set; }
-        public ShapePosition Position { get; set; }
+        public Color Color { get; set; }
+        public ScaleFactor Scale { get; set; }
+        public Position Position { get; set; }
 
         // Метод перевода Расположения в координаты x y
         public void ComputePosition()
@@ -168,15 +96,11 @@ namespace Task_1
                 default:
                     break;
             }
-
-            return;
         }
 
-        // Каждый наследник рисуется по-своему
         public virtual void Draw() { }
     }
 
-    // Класс "Треугольник". Наследуется от "Фигуры", переопределяя метод рисования
     class Triangle : Shape
     {
         public override void Draw()
@@ -200,7 +124,6 @@ namespace Task_1
         }
     }
 
-    // Класс "Прямоугольник". Наследуется от "Фигуры", переопределяя метод рисования
     class Rectangle : Shape
     {
         public override void Draw()
@@ -224,19 +147,16 @@ namespace Task_1
         }
     }
 
-    // Класс "Коллекция фигур". Реализует интерфейс IEnumerable
     class ShapeCollection : IEnumerable
     {
         // Вектор из фигур
         ArrayList shapes;
 
-        // При создании экземпляра конструктор выделяет память под вектор из фигур
         public ShapeCollection()
         {
             shapes = new ArrayList();
         }
 
-        // Метод выбора типа фигуры. Принимает ссылку на фигуру
         private void ShapeChoice(ref Shape _shape)
         {
             Console.Clear();
@@ -265,7 +185,6 @@ namespace Task_1
             return;
         }
 
-        // Метод выбора размера фигуры. Принимает ссылку на фигуру
         private void ScaleChoice(ref Shape _shape)
         {
             Console.Clear();
@@ -283,22 +202,19 @@ namespace Task_1
             switch (Scale)
             {
                 case 0:
-                    _shape.Scale = ShapeScale.Small;
+                    _shape.Scale = ScaleFactor.Small;
                     break;
                 case 1:
-                    _shape.Scale = ShapeScale.Medium;
+                    _shape.Scale = ScaleFactor.Medium;
                     break;
                 case 2:
-                    _shape.Scale = ShapeScale.Big;
+                    _shape.Scale = ScaleFactor.Big;
                     break;
                 default:
                     throw new Exception("Размер не выбран!");
             }
-
-            return;
         }
 
-        // Метод выбора цвета фигуры. Принимает ссылку на фигуру 
         private void ColorChoice(ref Shape _shape)
         {
             Console.Clear();
@@ -320,31 +236,28 @@ namespace Task_1
             switch (Color)
             {
                 case 0:
-                    _shape.Color = ShapeColor.Gray;
+                    _shape.Color = Task_1.Color.Gray;
                     break;
                 case 1:
-                    _shape.Color = ShapeColor.Blue;
+                    _shape.Color = Task_1.Color.Blue;
                     break;
                 case 2:
-                    _shape.Color = ShapeColor.Green;
+                    _shape.Color = Task_1.Color.Green;
                     break;
                 case 3:
-                    _shape.Color = ShapeColor.Red;
+                    _shape.Color = Task_1.Color.Red;
                     break;
                 case 4:
-                    _shape.Color = ShapeColor.Yellow;
+                    _shape.Color = Task_1.Color.Yellow;
                     break;
                 case 5:
-                    _shape.Color = ShapeColor.White;
+                    _shape.Color = Task_1.Color.White;
                     break;
                 default:
                     throw new Exception("Цвет не выбран!");
             }
-
-            return;
         }
 
-        // Метод выбора расположения фигуры. Принимает ссылку на фигуру
         private void PositionChoice(ref Shape _shape)
         {
             Console.Clear();
@@ -369,31 +282,31 @@ namespace Task_1
             switch (Position)
             {
                 case 0:
-                    _shape.Position = ShapePosition.UpperLeft;
+                    _shape.Position = Task_1.Position.UpperLeft;
                     break;
                 case 1:
-                    _shape.Position = ShapePosition.UpperCentre;
+                    _shape.Position = Task_1.Position.UpperCentre;
                     break;
                 case 2:
-                    _shape.Position = ShapePosition.UpperRight;
+                    _shape.Position = Task_1.Position.UpperRight;
                     break;
                 case 3:
-                    _shape.Position = ShapePosition.CentreLeft;
+                    _shape.Position = Task_1.Position.CentreLeft;
                     break;
                 case 4:
-                    _shape.Position = ShapePosition.CentreCentre;
+                    _shape.Position = Task_1.Position.CentreCentre;
                     break;
                 case 5:
-                    _shape.Position = ShapePosition.CentreRight;
+                    _shape.Position = Task_1.Position.CentreRight;
                     break;
                 case 6:
-                    _shape.Position = ShapePosition.LowerLeft;
+                    _shape.Position = Task_1.Position.LowerLeft;
                     break;
                 case 7:
-                    _shape.Position = ShapePosition.LowerCentre;
+                    _shape.Position = Task_1.Position.LowerCentre;
                     break;
                 case 8:
-                    _shape.Position = ShapePosition.LowerRight;
+                    _shape.Position = Task_1.Position.LowerRight;
                     break;
                 default:
                     throw new Exception("Позиция не выбрана!");
@@ -401,8 +314,6 @@ namespace Task_1
 
             // Расчитать координаты
             _shape.ComputePosition();
-
-            return;
         }
 
         // Метод добавления фигуры в коллекцию
@@ -440,8 +351,6 @@ namespace Task_1
             Console.WriteLine("Фигура добавлена в коллекцию.");
 
             Console.ReadLine();
-
-            return;
         }
 
         // Метод вывода коллекции на экран
@@ -455,8 +364,6 @@ namespace Task_1
             }
 
             Console.ReadLine();
-
-            return;
         }
 
         public void MenuStart()
