@@ -31,32 +31,38 @@ namespace Task_1
     {
         static void Main(string[] args)
         {
-            House house = new House();
-            Team team = new Team();
+            var house = new House();
+            var team = new Team();
 
-            Console.WriteLine("Строительство началось!");
+            Console.WriteLine("The work has begun!");
             Console.WriteLine("========================");
             Console.WriteLine();
 
-            // Пока Дом не построен
+            Random random = new Random();
+
+            // At every iteration the random worker is called to do the work.
             while (!house.IsBuilt())
             {
-                Random random = new Random();
+                int workerIndex = random.Next(team.Length);
 
-                // Вызывать случайного работника для выполнения работы по Дому
-                team[random.Next(team.Length)].DoWork(house);
+                team[workerIndex].DoWork(house);
 
-                // Следующий шаг по нажатию клавиши Enter
+                // Next iteration is by pressing "Enter".
                 Console.ReadLine();
             }
 
             Console.WriteLine("========================");
-            Console.WriteLine("Строительство завершено!");
+            Console.WriteLine("The work is completed!");
             Console.WriteLine();
 
-            // Вызвать бригадира для формирования отчета
-            // (вызов по индексу - известно что он последний в списке)
-            team[team.Length - 1].DoWork(house);
+            // Find the team leader to create a final report.
+            foreach (var worker in team)
+            {
+                if (worker.Name.Equals("Team Leader"))
+                {
+                    worker.DoWork(house);
+                }
+            }
 
             Console.ReadLine();
         }

@@ -4,7 +4,7 @@
     {
         public string Name { get; }
 
-        public Worker(string name)
+        protected Worker(string name)
         {
             Name = name;
         }
@@ -14,23 +14,23 @@
 
     internal class Builder : Worker
     {
-        public Builder(string _Name) : base(_Name) { }
+        public Builder(string name) : base(name) { }
 
         public override void DoWork(House house)
         {
-            Console.WriteLine("Работает строитель. Что-то построено.");
-
+            // Find out what part must be build next.
+            // Build it and left a signature of the builder.
             for (int i = 0; i < house.Length; i++)
             {
-                // Проверка какая из следующих частей не построена
                 if (!house[i].IsBuilt)
                 {
-                    // Построить часть, подписав её своим именем
                     house[i].WhoBuilt = Name;
                     house[i].IsBuilt = true;
                     break;
                 }
             }
+
+            Console.WriteLine("Something was build. Press \"Enter\" to continue...");
         }
     }
 
@@ -40,22 +40,23 @@
 
         public override void DoWork(House house)
         {
-            // Кол-во построееных частей для вывода объема проделанной работы
-            int iParts = 0;
+            int partsCount = 0;
 
-            Console.WriteLine("Работает бригадир. Отчёт :");
+            Console.WriteLine("Team leader's report :");
 
             foreach (var part in house.parts)
             {
-                // Вывести информацию о всех построенных частях
                 if (part.IsBuilt)
                 {
-                    iParts++;
                     part.PrintInfo();
+                    partsCount++;
                 }
             }
 
-            Console.WriteLine("Выполнено работы : " + (int)((float)iParts / house.Length * 100) + "%");
+            Console.WriteLine(
+                "Work is completed by : " + Math.Round((float)partsCount / house.Length * 100, 2) + " %");
+
+            Console.WriteLine("Press \"Enter\" to continue...");
         }
     }
 }

@@ -24,30 +24,31 @@
                 new Roof()];
         }
 
-        // Индексатор Дома
-        public Part this[int _Index]
+        public Part this[int index]
         {
             get
             {
-                if (_Index >= 0 && _Index < parts.Length)
+                if (index >= 0 && index < parts.Length)
                 {
-                    return parts[_Index];
+                    return parts[index];
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(
+                        nameof(index), index, "The index value is outside the bounds of the \"Parts\" array.");
                 }
             }
 
             set
             {
-                if (_Index >= 0 && _Index < parts.Length)
+                if (index >= 0 && index < parts.Length)
                 {
-                    parts[_Index] = value;
+                    parts[index] = value;
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(
+                        nameof(index), index, "The index value is outside the bounds of the \"Parts\" array.");
                 }
             }
         }

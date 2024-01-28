@@ -7,7 +7,7 @@
         public string WhoBuilt { get; set; } = "Unknown";
 
         public void PrintInfo() =>
-            Console.Write($"{Name} was built. By: < {WhoBuilt} >");
+            Console.Write($"{Name} was built. By: < {WhoBuilt} >\n");
     }
 
     internal class Basement : Part
