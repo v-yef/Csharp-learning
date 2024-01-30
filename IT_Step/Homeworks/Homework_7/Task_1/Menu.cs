@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task_1
+﻿namespace Task_1
 {
-    internal class Menu
+    internal static class Menu
     {
         public static int VerticalMenu(string[] elements)
         {

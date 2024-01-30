@@ -24,7 +24,7 @@ namespace Task_1
     {
         static void Main(string[] args)
         {
-            ShapeCollection collection = new ShapeCollection();
+            var collection = new ShapeCollection();
             collection.MenuStart();
         }
     }
