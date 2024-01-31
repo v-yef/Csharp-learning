@@ -1,73 +1,95 @@
 ﻿namespace Task_1
 {
+    enum Type
+    {
+        Undefined, Rectangle, Triangle
+    }
+    enum Color
+    {
+        Undefined,
+        Gray = 7,
+        Blue = 9,
+        Green = 10,
+        Red = 12,
+        Yellow = 14,
+        White = 15
+    }
+    enum Position
+    {
+        Undefined = 0,
+        UpperLeft = 1,
+        UpperCentre = 2,
+        UpperRight = 3,
+        CentreLeft = 4,
+        CentreCentre = 5,
+        CentreRight = 6,
+        LowerLeft = 7,
+        LowerCentre = 8,
+        LowerRight = 9
+    }
+    enum Scale
+    {
+        Undefined,
+        Small = 3,
+        Medium = 6,
+        Big = 9
+    }
+    struct UpperLeftPointXY
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
     internal static class ShapeMaker
     {
-        private struct UpperLeftPointXY
+        public static Shape? CreateShape()
         {
-            public int X { get; set; }
-            public int Y { get; set; }
-        }
-        private enum Color
-        {
-            Gray = 7,
-            Blue = 9,
-            Green = 10,
-            Red = 12,
-            Yellow = 14,
-            White = 15
-        }
-        private enum Position
-        {
-            UpperLeft = 0,
-            UpperCentre = 1,
-            UpperRight = 2,
-            CentreLeft = 3,
-            CentreCentre = 4,
-            CentreRight = 5,
-            LowerLeft = 6,
-            LowerCentre = 7,
-            LowerRight = 8
-        }
-        private enum ScaleFactor
-        {
-            Small = 3,
-            Medium = 6,
-            Big = 9
-        }
+            Shape? shape = null;
 
-        public static Shape CreateShape()
-        {
-            Shape shape;
+            Type type = ConvertIntToTypeEnum(GetTypeFromUser());
+            if (type == Type.Undefined)
+            {
 
-            int type = GetTypeFromUser();
-            ScaleFactor scale = GetScaleFromUser();
-            Color color = GetColorFromUser();
-            Position position = GetPositionFromUser();
+            }
+
+            Color color = ConvertIntToColorEnum(GetColorFromUser());
+            if (color == Color.Undefined)
+            {
+
+            }
+
+            Scale scale = ConvertIntToScaleEnum(GetScaleFromUser());
+            if (scale == Scale.Undefined)
+            {
+
+            }
+
+            Position position = ConvertIntToPositionEnum(GetPositionFromUser());
+            if (position == Position.Undefined)
+            {
+
+            }
 
             switch (type)
             {
-                case 0:
+                case Type.Rectangle:
                     shape = new Rectangle(color, scale, position);
                     break;
-                case 1:
+                case Type.Triangle:
                     shape = new Triangle(color, scale, position);
                     break;
-                default:
-                    throw new Exception("Тип не выбран!");
+                case Type.Undefined:
+                    break;
             }
-
-
-
-
 
             return shape;
         }
 
-        private static int GetTypeFromUser()
+        private static int? GetTypeFromUser()
         {
             Console.Clear();
 
-            Console.WriteLine("Тип создаваемой фигуры :");
+            Console.WriteLine("Select type of the shape :");
 
             return Menu.VerticalMenu([
                 "Rectangle",
@@ -75,108 +97,91 @@
                 "Exit"]);
         }
 
-        private static Shape SetType(int type)
+        private static Type ConvertIntToTypeEnum(int? type)
         {
-            Shape shape;
-
-
-
-            return shape;
+            switch (type)
+            {
+                case 1:
+                    return Type.Rectangle;
+                case 2:
+                    return Type.Triangle;
+                default:
+                    return Type.Undefined;
+            }
         }
 
-        private static int GetScaleFromUser()
-        {
-
-        }
-
-        private static void ChooseScale(ref Shape shape)
+        private static int? GetScaleFromUser()
         {
             Console.Clear();
 
-            Console.WriteLine("Размер создаваемой фигуры :");
+            Console.WriteLine("Select size of the shape :");
 
-            int Scale = Menu.VerticalMenu([
+            return Menu.VerticalMenu([
                 "Small",
                 "Medium",
                 "Big",
                 "Exit"]);
+        }
 
-            switch (Scale)
+        private static Scale ConvertIntToScaleEnum(int? scale)
+        {
+            switch (scale)
             {
-                case 0:
-                    shape.Scale = ScaleFactor.Small;
-                    break;
                 case 1:
-                    shape.Scale = ScaleFactor.Medium;
-                    break;
+                    return Scale.Small;
                 case 2:
-                    shape.Scale = ScaleFactor.Big;
-                    break;
+                    return Scale.Medium;
+                case 3:
+                    return Scale.Big;
                 default:
-                    throw new Exception("Размер не выбран!");
+                    return Scale.Undefined;
             }
         }
 
-        private static int GetColorFromUser()
-        {
-
-        }
-
-        private static void ChooseColor(ref Shape shape)
+        private static int? GetColorFromUser()
         {
             Console.Clear();
 
-            Console.WriteLine("Цвет создаваемой фигуры :");
+            Console.WriteLine("Select color of the shape:");
 
-            int Color = Menu.VerticalMenu(new string[]
-            {
+            return Menu.VerticalMenu([
                 "Gray",
                 "Blue",
                 "Green",
                 "Red",
                 "Yellow",
                 "White",
-                "Exit",
+                "Exit"]);
+        }
 
-            });
-
-            switch (Color)
+        private static Color ConvertIntToColorEnum(int? color)
+        {
+            switch (color)
             {
-                case 0:
-                    shape.Color = Task_1.Color.Gray;
-                    break;
                 case 1:
-                    shape.Color = Task_1.Color.Blue;
-                    break;
+                    return Color.Gray;
                 case 2:
-                    shape.Color = Task_1.Color.Green;
-                    break;
+                    return Color.Blue;
                 case 3:
-                    shape.Color = Task_1.Color.Red;
-                    break;
+                    return Color.Green;
                 case 4:
-                    shape.Color = Task_1.Color.Yellow;
-                    break;
+                    return Color.Red;
                 case 5:
-                    shape.Color = Task_1.Color.White;
-                    break;
+                    return Color.Yellow;
+                case 6:
+                    return Color.White;
                 default:
-                    throw new Exception("Цвет не выбран!");
+                    return Color.Undefined;
             }
         }
 
-        private static int GetPositionFromUser()
-        {
-
-        }
-
-        private static void ChoosPosition(ref Shape shape)
+        private static int? GetPositionFromUser()
         {
             Console.Clear();
 
-            Console.WriteLine("Позиция создаваемой фигуры :");
+            Console.WriteLine("Select position of the shape :");
 
-            int Position = Menu.VerticalMenu([
+            return Menu.VerticalMenu([
                 "Сверху слева",
                 "Сверху по центру",
                 "Сверху справа",
@@ -187,41 +192,33 @@
                 "Снизу по центру",
                 "Снизу справа",
                 "Выход"]);
+        }
 
-            switch (Position)
+        private static Position ConvertIntToPositionEnum(int? position)
+        {
+            switch (position)
             {
-                case 0:
-                    shape.Position = Task_1.Position.UpperLeft;
-                    break;
                 case 1:
-                    shape.Position = Task_1.Position.UpperCentre;
-                    break;
+                    return Position.UpperLeft;
                 case 2:
-                    shape.Position = Task_1.Position.UpperRight;
-                    break;
+                    return Position.UpperCentre;
                 case 3:
-                    shape.Position = Task_1.Position.CentreLeft;
-                    break;
+                    return Position.UpperRight;
                 case 4:
-                    shape.Position = Task_1.Position.CentreCentre;
-                    break;
+                    return Position.CentreLeft;
                 case 5:
-                    shape.Position = Task_1.Position.CentreRight;
-                    break;
+                    return Position.CentreCentre;
                 case 6:
-                    shape.Position = Task_1.Position.LowerLeft;
-                    break;
+                    return Position.CentreRight;
                 case 7:
-                    shape.Position = Task_1.Position.LowerCentre;
-                    break;
+                    return Position.LowerLeft;
                 case 8:
-                    shape.Position = Task_1.Position.LowerRight;
-                    break;
+                    return Position.LowerCentre;
+                case 9:
+                    return Position.LowerRight;
                 default:
-                    throw new Exception("Позиция не выбрана!");
+                    return Position.Undefined;
             }
-
-            shape.ComputePosition();
         }
 
         public static UpperLeftPointXY ConvertPositionToCoordinates(Position position)
@@ -230,31 +227,31 @@
 
             switch ((int)position)
             {
-                case 0:
+                case 1:
                     pointXY.X = 1; pointXY.Y = 1;
                     break;
-                case 1:
+                case 2:
                     pointXY.X = 31; pointXY.Y = 1;
                     break;
-                case 2:
+                case 3:
                     pointXY.X = 61; pointXY.Y = 1;
                     break;
-                case 3:
+                case 4:
                     pointXY.X = 1; pointXY.Y = 11;
                     break;
-                case 4:
+                case 5:
                     pointXY.X = 31; pointXY.Y = 11;
                     break;
-                case 5:
+                case 6:
                     pointXY.X = 61; pointXY.Y = 11;
                     break;
-                case 6:
+                case 7:
                     pointXY.X = 1; pointXY.Y = 21;
                     break;
-                case 7:
+                case 8:
                     pointXY.X = 31; pointXY.Y = 21;
                     break;
-                case 8:
+                case 9:
                     pointXY.X = 61; pointXY.Y = 21;
                     break;
                 default:
@@ -267,6 +264,4 @@
 
 
     }
-
-
 }

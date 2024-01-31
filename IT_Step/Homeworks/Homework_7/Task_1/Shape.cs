@@ -5,10 +5,10 @@
         protected UpperLeftPointXY upperLeftPointXY;
 
         public Color Color { get; set; }
-        public ScaleFactor ScaleFactor { get; set; }
+        public Scale ScaleFactor { get; set; }
         public Position Position { get; set; }
 
-        protected Shape(Color color, ScaleFactor scaleFactor, Position position)
+        protected Shape(Color color, Scale scaleFactor, Position position)
         {
             Color = color;
             ScaleFactor = scaleFactor;
@@ -20,7 +20,7 @@
 
     internal class Triangle : Shape
     {
-        public Triangle(Color color, ScaleFactor scaleFactor, Position position)
+        public Triangle(Color color, Scale scaleFactor, Position position)
             : base(color, scaleFactor, position) { }
 
         public override void Draw()
@@ -43,7 +43,7 @@
 
     internal class Rectangle : Shape
     {
-        public Rectangle(Color color, ScaleFactor scaleFactor, Position position)
+        public Rectangle(Color color, Scale scaleFactor, Position position)
             : base(color, scaleFactor, position) { }
 
         public override void Draw()

@@ -21,7 +21,7 @@ namespace Task_1
 
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                int userChoice = Menu.VerticalMenu([
+                int? userChoice = Menu.VerticalMenu([
                     "Add shape",
                     "Print all shapes",
                     "Exit"]);
@@ -52,7 +52,7 @@ namespace Task_1
                 return;
             }
 
-            Shape newShape = ShapeMaker.CreateShape();
+            Shape? newShape = ShapeMaker.CreateShape();
 
             if(newShape is null)
             {

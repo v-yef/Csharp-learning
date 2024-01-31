@@ -2,8 +2,10 @@
 {
     internal static class Menu
     {
-        public static int VerticalMenu(string[] elements)
+        public static int? VerticalMenu(string[] elements)
         {
+            int? menuChoice = null;
+
             int maxLen = 0;
 
             foreach (var item in elements)
@@ -20,10 +22,10 @@
             //Console.CursorVisible = false;
 
             int pos = 0;
+            bool isOptionChosen = false;
 
-            while (true)
+            do
             {
-
                 for (int i = 0; i < elements.Length; i++)
                 {
                     Console.CursorVisible = false;
@@ -47,28 +49,37 @@
 
                 switch (consoleKey)
                 {
-                    case ConsoleKey.Enter:
-                        return pos;
-                    //break;
-
-                    case ConsoleKey.Escape:
-                        return elements.Length - 1;
-                    //break;
-
                     case ConsoleKey.UpArrow:
                         if (pos > 0)
+                        {
                             pos--;
+                        }
                         break;
 
                     case ConsoleKey.DownArrow:
                         if (pos < elements.Length - 1)
+                        {
                             pos++;
+                        }
+                        break;
+
+                    case ConsoleKey.Enter:
+                        menuChoice = pos;
+                        isOptionChosen = true;
+                        break;
+
+                    case ConsoleKey.Escape:
+                        menuChoice = elements.Length - 1;
+                        isOptionChosen = true;
                         break;
 
                     default:
                         break;
                 }
             }
+            while (!isOptionChosen);
+
+            return menuChoice;
         }
     }
 }
