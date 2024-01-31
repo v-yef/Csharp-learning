@@ -4,8 +4,8 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create an extension method to calculate the length of the last word in a string.
-  Write the code to test the method.
+ Description : Create an extension method to calculate the length of the last
+               word in a string. Write a program to test the method.
  ============================================================================
  */
 
@@ -15,7 +15,9 @@ namespace Task_3
     {
         public static int LastWordLength(this string _String)
         {
-            string[] Words = _String.Split(" ,.!?'\";:@#$%^&*()+=<>/1234567890".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] Words = _String.Split(
+                " ,.!?'\";:@#$%^&*()+=<>/1234567890".ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
 
             string LastWord = Words.Last();
 

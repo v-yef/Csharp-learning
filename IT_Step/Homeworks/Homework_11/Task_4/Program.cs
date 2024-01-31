@@ -4,9 +4,10 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create an extension method to filter the elements of an array of integers based on a passed argument (predicate
-  condition definition). The method returns a new, created array after filtering. For example, the condition can be
-  predicate for checking for parity or oddity of array elements.
+ Description : Create an extension method to filter an array of integers using
+               a passed-in argument (predicate). The method returns a newly
+               created array after the filtering. For example, the condition
+               can be a predicate for checking elements for parity or oddity.
  ============================================================================
  */
 
@@ -34,7 +35,7 @@ namespace Task_4
         {
             static void Main(string[] args)
             {
-                int[] arr = new int[] { 1, 33, 47, 3, 4, 121, 150, 0, 8, 14, 54, 22, 43, 10, 100 };
+                int[] arr = [1, 33, 47, 3, 4, 121, 150, 0, 8, 14, 54, 22, 43, 10, 100];
 
                 int[] arr1 = arr.Filter(i => i % 2 == 0);
 

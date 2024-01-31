@@ -4,8 +4,8 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Create an extension method to check whether an integer is a Fibonacci number.
-               Write the code to test the method.
+ Description : Create an extension method to check whether an integer is a
+               Fibonacci number. Write a program to test the method.
  ============================================================================
  */
 
@@ -33,7 +33,7 @@ namespace Task_1
 
             int Current = 0;
             int FirstPrevious = 1;
-            int SecondPrevious = 0;
+            int SecondPrevious;
 
             for (int i = 0; i > -1000000; i--)
             {
@@ -41,7 +41,7 @@ namespace Task_1
                 Current = FirstPrevious;
                 FirstPrevious += SecondPrevious;
 
-                if (Current.IsFibonacci() == true)
+                if (Current.IsFibonacci())
                 {
                     if (i % 2 == 0)
                     {
