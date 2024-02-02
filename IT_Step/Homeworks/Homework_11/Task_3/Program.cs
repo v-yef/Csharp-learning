@@ -11,31 +11,13 @@
 
 namespace Task_3
 {
-    static class Extension
+    internal static class Program
     {
-        public static int LastWordLength(this string _String)
+        static void Main(string[] args)
         {
-            string[] Words = _String.Split(
-                " ,.!?'\";:@#$%^&*()+=<>/1234567890".ToCharArray(),
-                StringSplitOptions.RemoveEmptyEntries);
+            LastWordLengthDriver.RunTest();
 
-            string LastWord = Words.Last();
-
-            return LastWord.Length;
-        }
-
-        internal static class Program
-        {
-            static void Main(string[] args)
-            {
-                Console.WriteLine("Введите строку :");
-
-                string InputString = Console.ReadLine();
-
-                Console.WriteLine($"Длина последнего слова : {InputString.LastWordLength()}");
-
-                Console.ReadLine();
-            }
+            Console.ReadLine();
         }
     }
 }
