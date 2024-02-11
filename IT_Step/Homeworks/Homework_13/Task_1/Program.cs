@@ -4,21 +4,20 @@
  Author      : Viacheslav Yefisko
  Version     : 0
  Copyright   : MIT License
- Description : Develop a class “Invoice for payment”. Provide the following fields in the class:
-  -payment per day;
--amount of days;
-- fine for one day of late payment;
--number of days of delay in payment;
--amount to be paid without penalty (calculated field);
--fine(calculated field);
--total amount to be paid (calculated field).
-
-  In the class, declare a static property of type bool, the value of which affects the formatting process
-  objects of this class. If the value of this property is true, then all
-  fields; if false, calculated fields are not serialized.
-
-  Develop an application in which you need to demonstrate the use of this class, the results
-  must be written to and read from the file.
+ Description : Create a class “Invoice” with following fields:
+                - daily payment,
+                - number of days,
+                - daily fine if payment is delayed,
+                - number of days of delay,
+                - payment without fines (calculated field),
+                - total fine (calculated field),
+                - total payment (calculated field).
+               Also include a static bool property, the value of which affects
+               the serialization process of this class. If the value of this
+               property is true, then all fields are serialized; if it is false,
+               calculated fields are not serialized.
+               Write a programm that demonstrates the use of this class. The
+               results must be written to and read from the file.
  ============================================================================
  */
 
@@ -27,7 +26,7 @@ using System.Runtime.Serialization;
 namespace Task_1
 {
     [Serializable]
-    public class Bill : ISerializable
+    public class Invoice : ISerializable
     {
         protected decimal DayPayment { get; } = 0;
         protected int DayCount { get; } = 0;
@@ -38,22 +37,26 @@ namespace Task_1
         protected decimal PaymentTotal { get; set; } = 0;
         static public bool IsAllSerialized { get; set; } = false;
 
-        // Конструктор принимает основные данные по оплате и производит расчет вычисляемых полей. 
-        public Bill(decimal _DayPayment, int _DayCount, decimal _DayFee, int _DelayedDayCount)
+        public Invoice(decimal dayPayment, int dayCount, decimal dayFee, int delayedDayCount)
         {
-            this.DayPayment = _DayPayment;
-            this.DayCount = _DayCount;
-            this.DayFee = _DayFee;
-            this.DelayedDayCount = _DelayedDayCount;
+            this.DayPayment = dayPayment;
+            this.DayCount = dayCount;
+            this.DayFee = dayFee;
+            this.DelayedDayCount = delayedDayCount;
 
             this.ComputePaymentWithoutFee();
             this.ComputeFee();
             this.ComputePaymentTotal();
         }
 
-        private void ComputePaymentWithoutFee() => this.PaymentWithoutFee = this.DayPayment * this.DayCount;
-        private void ComputeFee() => this.Fee = this.DayFee * this.DelayedDayCount;
-        private void ComputePaymentTotal() => this.PaymentTotal = this.PaymentWithoutFee + this.Fee;
+        private void ComputePaymentWithoutFee() =>
+            this.PaymentWithoutFee = this.DayPayment * this.DayCount;
+
+        private void ComputeFee() =>
+            this.Fee = this.DayFee * this.DelayedDayCount;
+
+        private void ComputePaymentTotal() =>
+            this.PaymentTotal = this.PaymentWithoutFee + this.Fee;
 
         public void Print()
         {
@@ -64,32 +67,25 @@ namespace Task_1
             Console.WriteLine("Сумма к оплате без штрафа : " + this.PaymentWithoutFee);
             Console.WriteLine("Штраф : " + this.Fee);
             Console.WriteLine("Общая сумма к оплате : " + this.PaymentTotal);
-
-            return;
         }
 
-        // Метод сериализации.
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-
             info.AddValue("DayPayment", DayPayment);
             info.AddValue("DayCount", DayCount);
             info.AddValue("DayFee", DayFee);
             info.AddValue("DelayedDayCount", DelayedDayCount);
             info.AddValue("IsAllSerialized", IsAllSerialized);
 
-            if (IsAllSerialized == true)
+            if (IsAllSerialized)
             {
                 info.AddValue("PaymentWithoutFee", PaymentWithoutFee);
                 info.AddValue("Fee", Fee);
                 info.AddValue("PaymentTotal", PaymentTotal);
             }
-
-            return;
         }
 
-        // Конструктор десериализации.
-        private Bill(SerializationInfo info, StreamingContext context)
+        private Invoice(SerializationInfo info, StreamingContext context)
         {
             DayPayment = Convert.ToDecimal(info.GetString("DayPayment"));
             DayCount = Convert.ToInt32(info.GetString("DayCount"));
@@ -97,7 +93,7 @@ namespace Task_1
             DelayedDayCount = Convert.ToInt32(info.GetString("DelayedDayCount"));
             IsAllSerialized = Convert.ToBoolean(info.GetString("IsAllSerialized"));
 
-            if (IsAllSerialized == true)
+            if (IsAllSerialized)
             {
                 PaymentWithoutFee = Convert.ToDecimal(info.GetString("PaymentWithoutFee"));
                 Fee = Convert.ToDecimal(info.GetString("Fee"));
@@ -112,56 +108,55 @@ namespace Task_1
         {
             try
             {
-                Bill bill_1 = new Bill(10, 1, 1, 1);
+                Invoice invoice_1 = new Invoice(10, 1, 1, 1);
 
                 SoapFormatter soap = new SoapFormatter();
 
-                Bill.IsAllSerialized = true;
-                //Bill.IsAllSerialized = false;
+                Invoice.IsAllSerialized = true;
+                //Invoice.IsAllSerialized = false;
 
                 Console.WriteLine("Вычисляемые поля сериализуются : ");
                 Console.WriteLine("================================ ");
 
-                using (Stream stream = File.Create("Bill.soap"))
+                using (Stream stream = File.Create("Invoice.soap"))
                 {
-                    soap.Serialize(stream, bill_1);
+                    soap.Serialize(stream, invoice_1);
                 }
 
-                Bill bill_2 = null;
+                Invoice invoice_2;
 
-                Bill.IsAllSerialized = true;
-                //Bill.IsAllSerialized = false;
+                Invoice.IsAllSerialized = true;
+                //Invoice.IsAllSerialized = false;
 
-                using (Stream fStream = File.OpenRead("Bill.soap"))
+                using (Stream fStream = File.OpenRead("Invoice.soap"))
                 {
-                    bill_2 = (Bill)soap.Deserialize(fStream);
+                    invoice_2 = (Invoice)soap.Deserialize(fStream);
                 }
 
-                bill_2.Print();
+                invoice_2.Print();
                 Console.WriteLine();
 
                 Console.WriteLine("Вычисляемые поля не сериализуются : ");
                 Console.WriteLine("================================ ");
 
-                //Bill.IsAllSerialized = true;
-                Bill.IsAllSerialized = false;
+                //Invoice.IsAllSerialized = true;
+                Invoice.IsAllSerialized = false;
 
-                using (Stream stream = File.Create("Bill.soap"))
+                using (Stream stream = File.Create("Invoice.soap"))
                 {
-                    soap.Serialize(stream, bill_1);
+                    soap.Serialize(stream, invoice_1);
                 }
 
-                bill_2 = null;
+                //Invoice.IsAllSerialized = true;
+                Invoice.IsAllSerialized = false;
 
-                //Bill.IsAllSerialized = true;
-                Bill.IsAllSerialized = false;
-
-                using (Stream fStream = File.OpenRead("Bill.soap"))
+                using (Stream fStream = File.OpenRead("Invoice.soap"))
                 {
-                    bill_2 = (Bill)soap.Deserialize(fStream);
+                    invoice_2 = (Invoice)soap.Deserialize(fStream);
                 }
 
-                bill_2.Print();
+                invoice_2.Print();
+
                 Console.WriteLine();
             }
             catch (Exception exc)
@@ -170,8 +165,6 @@ namespace Task_1
             }
 
             Console.ReadLine();
-
-            return;
         }
     }
 }
