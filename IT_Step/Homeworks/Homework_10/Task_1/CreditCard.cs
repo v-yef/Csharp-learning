@@ -27,12 +27,12 @@ namespace Task_1
         protected void PrintInfo()
         {
             Console.Clear();
-            Console.WriteLine("Номер карты : " + this.cardID);
-            Console.WriteLine("Владелец карты : " + this.cardHolderName);
-            Console.WriteLine("Действительна до : " + this.expiryDate);
-            Console.WriteLine("PIN-код : " + this.PIN);
-            Console.WriteLine("Лимит на снятие средств : " + this.creditLimit);
-            Console.WriteLine("Текущий баланс : " + this.balance);
+            Console.WriteLine("Card ID : " + this.cardID);
+            Console.WriteLine("Card holder : " + this.cardHolderName);
+            Console.WriteLine("Expires : " + this.expiryDate);
+            Console.WriteLine("PIN : " + this.PIN);
+            Console.WriteLine("Credit limit : " + this.creditLimit);
+            Console.WriteLine("Balance : " + this.balance);
         }
 
         protected void Refill()

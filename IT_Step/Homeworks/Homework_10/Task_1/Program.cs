@@ -5,18 +5,18 @@
  Version     : 0
  Copyright   : MIT License
  Description : Create a "Credit Card" class. The class must contain:
-                - Card ID;
-                - Full name of the holder;
-                - Card expiry period;
-                - PIN;
-                - Credit limit;
+                - Card ID,
+                - Full name of the holder,
+                - Card expiry period,
+                - PIN,
+                - Credit limit,
                 - Amount of money.
                Create necessary class methods. Implement events for the 
                following situations:
-                - Refill;
-                - Spending funds from the account;
-                - Start using credit funds;
-                - Hitting the limit of a given amount of money;
+                - Refill,
+                - Spending funds from the account,
+                - Start using credit funds,
+                - Hitting the limit of a given amount of money,
                 - PIN change.
  ============================================================================
  */
@@ -25,9 +25,12 @@ namespace Task_1
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var creditCard = new CreditCard("0000-0000-0000-0000", "Ivanov Ivan Ivanovich", "06/25");
+            var creditCard = new CreditCard(
+                "0000-0000-0000-0000",
+                "Ivanov Ivan Ivanovich",
+                "06/25");
 
             var bank = new Bank();
 
