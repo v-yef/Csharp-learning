@@ -2,9 +2,9 @@
 
 namespace Task_2
 {
-    internal class ProcessManager
+    internal static class ProcessManager
     {
-        public void Work()
+        public static void Work()
         {
             Console.WriteLine("Press any key to start process...");
             Console.ReadKey();
@@ -15,7 +15,7 @@ namespace Task_2
 
                 if (process is null)
                 {
-                    Console.WriteLine("Cannot create new process!");
+                    Console.WriteLine("\nCannot create new process!");
                     return;
                 }
 
@@ -23,15 +23,15 @@ namespace Task_2
 
                 if (process.Start())
                 {
-                    Console.WriteLine("Process started successfully!");
+                    Console.WriteLine("\nProcess started successfully!");
 
-                    this.maintainProcess(process);
+                    MaintainProcess(process);
 
-                    Console.WriteLine($"Process was closed. Exit code: {process.ExitCode}");
+                    Console.WriteLine($"\nProcess was closed. Exit code: {process.ExitCode}");
                 }
                 else
                 {
-                    Console.WriteLine("Process cannot start!");
+                    Console.WriteLine("\nProcess cannot start!");
                 }
             }
             catch (Exception exc)
@@ -40,9 +40,9 @@ namespace Task_2
             }
         }
 
-        private void maintainProcess(Process process)
+        private static void MaintainProcess(Process process)
         {
-            Console.WriteLine("Choose action:");
+            Console.WriteLine("\nChoose action:");
 
             int choice = Menu.VerticalMenu(["Wait for process exit",
                                             "Kill process"],
@@ -60,8 +60,6 @@ namespace Task_2
                 default:
                     break;
             }
-
-            return;
         }
     }
 }

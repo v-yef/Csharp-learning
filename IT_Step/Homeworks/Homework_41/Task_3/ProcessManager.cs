@@ -1,12 +1,19 @@
 ﻿using System.Diagnostics;
 
-namespace Task_1
+namespace Task_3
 {
     internal static class ProcessManager
     {
         public static void Work()
         {
-            Console.WriteLine("Press any key to start process...");
+            Console.WriteLine("Enter arguments (Example: 3 7 +) :");
+            string? arguments = Console.ReadLine();
+            if (arguments is null)
+            {
+                return;
+            }
+
+            Console.WriteLine("Arguments obtained. Press any key to start process...");
             Console.ReadKey();
 
             try
@@ -15,15 +22,16 @@ namespace Task_1
 
                 if (process is null)
                 {
-                    Console.WriteLine("\nCannot create new process!");
+                    Console.WriteLine("\nCannot create new process...");
                     return;
                 }
 
-                process.StartInfo.FileName = "notepad.exe";
+                process.StartInfo.FileName = "Task_3_Calculator.exe";
+                process.StartInfo.Arguments = arguments;
 
                 if (process.Start())
                 {
-                    Console.WriteLine("\nProcess started successfully!");
+                    Console.WriteLine("\nProcess started successfully...");
 
                     process.WaitForExit();
 
@@ -31,7 +39,7 @@ namespace Task_1
                 }
                 else
                 {
-                    Console.WriteLine("\nProcess cannot start!");
+                    Console.WriteLine("\nProcess cannot start...");
                 }
             }
             catch (Exception exc)
