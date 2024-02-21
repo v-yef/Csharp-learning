@@ -6,16 +6,15 @@ namespace Task_1
     {
         public static void Work()
         {
-            Console.WriteLine("Press any key to start process...");
+            Console.WriteLine("Press any key to start a process...");
             Console.ReadKey();
 
             try
             {
                 var process = new Process();
-
                 if (process is null)
                 {
-                    Console.WriteLine("\nCannot create new process!");
+                    Console.WriteLine("\nCannot create a new process!");
                     return;
                 }
 

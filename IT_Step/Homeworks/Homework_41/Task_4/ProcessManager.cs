@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
 
-namespace Task_3
+namespace Task_4
 {
     internal static class ProcessManager
     {
         public static void Work()
         {
-            Console.WriteLine("Enter arguments (Example: 3 7 +) :");
+            Console.WriteLine("Enter arguments (Example: FilePath SearchWord) :");
             string? arguments = Console.ReadLine();
             if (arguments is null)
             {
@@ -25,7 +25,7 @@ namespace Task_3
                     return;
                 }
 
-                process.StartInfo.FileName = "Task_3_Calculator.exe";
+                process.StartInfo.FileName = "Task_4_WordCounter.exe";
                 process.StartInfo.Arguments = arguments;
 
                 if (process.Start())
