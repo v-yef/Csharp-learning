@@ -10,8 +10,9 @@
 
             do
             {
-                Console.WriteLine($"Enter an integer number between {num1} and {num2} " +
-                   $"OR press 'Q' to quit.");
+                Console.WriteLine(
+                    $"Enter an integer number between {num1} and {num2} " +
+                    $"OR press 'Q' to quit.");
 
                 userInput = Console.ReadLine();
 

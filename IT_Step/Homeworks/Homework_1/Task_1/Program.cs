@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_1-Task_1
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -11,14 +11,14 @@
                output is "Fizz Buzz". If the number is neither a multiple of
                3 nor 5, only the number is displayed. If the user enters a value
                not in the [1..100] range, an error message is displayed.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_1
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int? userNum = UserInputProcessor.GetIntegerFromUserInRange(0, 100);
             if (userNum is null)
@@ -26,7 +26,8 @@ namespace Task_1
                 return;
             }
 
-            Console.WriteLine(UserInputProcessor.MakeMessageBasedOnIntegerInput(userNum.Value));
+            Console.WriteLine(UserInputProcessor
+                .MakeMessageBasedOnIntegerInput(userNum.Value));
         }
     }
 }

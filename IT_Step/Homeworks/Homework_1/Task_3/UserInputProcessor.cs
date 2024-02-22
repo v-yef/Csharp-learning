@@ -20,7 +20,8 @@
                     return null;
                 }
 
-                isValidInput = sbyte.TryParse(userInput, out result) && (result / 10 == 0);
+                isValidInput =
+                    sbyte.TryParse(userInput, out result) && (result / 10 == 0);
 
                 if (!isValidInput)
                 {

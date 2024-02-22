@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_1-Task_3
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -7,14 +7,14 @@
  Description : The user enters four digits. The program must create a number
                containing these digits. For example, if 1, 5, 7, 8 were entered,
                the number 1578 must be formed.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_3
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.Write("1st digit to form a number. ");
             sbyte? digit1 = UserInputProcessor.GetDigitFromUser();
