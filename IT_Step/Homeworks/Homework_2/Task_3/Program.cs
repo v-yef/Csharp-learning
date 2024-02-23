@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_2-Task_3
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -7,14 +7,14 @@
  Description : User enters an arithmetic expression of two integers with a
                keyboard. The application must calculate its result. Implement
                only two operations: + and –.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_3
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Введите выражение a +/- b:");
 

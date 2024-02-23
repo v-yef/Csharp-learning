@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_2-Task_2
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -7,14 +7,14 @@
  Description : Given a two-dimensional array of size 5×5, filled with random
                numbers in the range -100..100. Calculate the sum of array
                elements located between the minimal and maximal elements.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_2
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int[,] array = new int[5, 5];
 
@@ -36,11 +36,11 @@ namespace Task_2
                         arr_Min_i = i;
                         arr_Min_j = j;
                     }
-                }
-                   
+                }        
             }
                 
-            Console.WriteLine("Минимальный элемент " + arr_Min + " с координатами " + arr_Min_i + ", " + arr_Min_j);
+            Console.WriteLine("Минимальный элемент " + arr_Min + 
+                            " с координатами " + arr_Min_i + ", " + arr_Min_j);
 
             // Нахождение максимального элемента массива и его позиции
             int arr_Max = array[0, 0];
@@ -57,10 +57,8 @@ namespace Task_2
                         arr_Max_i = i;
                         arr_Max_j = j;
                     }
-                }
-                    
+                }                
             }
-               
 
             Console.WriteLine("Максимальный элемент " + arr_Max + " с координатами " + arr_Max_i + ", " + arr_Max_j);
 
@@ -73,8 +71,7 @@ namespace Task_2
                 for (int j = arr_Min_j + 1; j < array.GetLength(1); j++)
                 {
                     sum += array[arr_Min_i, j];
-                }
-                    
+                }           
 
                 // Нахождение суммы элементов на строках между меньшим и большим элементами
                 for (int i = arr_Min_i + 1; i < arr_Max_i; i++)
@@ -82,11 +79,9 @@ namespace Task_2
                     for (int j = 0; j < array.GetLength(1); j++)
                     {
                         sum += array[i, j];
-                    }
-                        
+                    }                        
                 }
-                    
-
+                
                 // Нахождение суммы элементов от начала строки, на которой расположен больший элемент, до самого элемента
                 for (int j = 0; j < arr_Max_j; j++)
                 {
@@ -103,24 +98,20 @@ namespace Task_2
                     sum += array[arr_Max_i, j];
                 }
                     
-
                 // Нахождение суммы элементов на строках между меньшим и большим элементами
                 for (int i = arr_Max_i + 1; i < arr_Min_i; i++)
                 {
                     for (int j = 0; j < array.GetLength(1); j++)
                     {
                         sum += array[i, j];
-                    }
-                        
+                    }          
                 }
                     
-
                 // Нахождение суммы элементов от начала строки, на которой расположен меньший элемент, до самого элемента
                 for (int j = 0; j < arr_Min_j; j++)
                 {
                     sum += array[arr_Min_i, j];
-                }
-                    
+                }              
             }
             // Иначе меньший и больший элемент расположены на одной строке arr_Max_i==arr_Min_i
             else
@@ -140,8 +131,7 @@ namespace Task_2
                     for (int j = arr_Max_j + 1; j < arr_Min_j; j++)
                     {
                         sum += array[arr_Max_i, j];
-                    }
-                        
+                    }   
                 }
             }
 

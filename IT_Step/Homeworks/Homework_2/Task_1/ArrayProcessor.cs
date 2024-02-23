@@ -2,14 +2,14 @@
 {
     public static class ArrayProcessor
     {
-        public static float[]? MakeOneDimensionalArrayOfFloatsWithUserInput(int elemCount)
+        public static float[]? MakeOneDimensionalArrayOfFloatsWithUserInput(
+                                int elemCount)
         {
             float[]? array = new float[elemCount];
 
             for (int i = 0; i < elemCount; i++)
             {
                 Console.WriteLine($"Enter array element #{i + 1}: ");
-
                 float? curNum = UserInputProcessor.GetFloatFromUser();
                 if (curNum is null)
                 {
@@ -22,7 +22,8 @@
             return array;
         }
 
-        public static float[,] MakeTwoDimensionalArrayOfFloatsWithRandomNumbers(int firstDimLen, int secondDimLen)
+        public static float[,] MakeTwoDimensionalArrayOfFloatsWithRandomNumbers(
+                                int firstDimLen, int secondDimLen)
         {
             float[,] array = new float[firstDimLen, secondDimLen];
 
@@ -32,7 +33,8 @@
             {
                 for (int j = 0; j < secondDimLen; j++)
                 {
-                    array[i, j] = Convert.ToSingle(Math.Round(random.NextDouble(), 3) * 100);
+                    array[i, j] = 
+                        Convert.ToSingle(Math.Round(random.NextDouble(), 3) * 100);
                 }                
             }
 

@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_2-Task_4
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -10,19 +10,17 @@
                today is a good day for walking. i will try to walk near the sea.
                The result must be:
                Today is a good day for walking. I will try to walk near the sea.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_4
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Enter string: ");
-
             string? inputStr = Console.ReadLine();
-
             if (inputStr is null)
             {
                 return;
@@ -35,7 +33,8 @@ namespace Task_4
                 {
                     Console.Write(char.ToUpper(inputStr[i]));
                 }                 
-                // The first letter after whitespace or period is displayed in uppercase, too.
+                // The first letter after whitespace or period is displayed
+                // in uppercase, too.
                 else if (((i - 1) is > 0) && (inputStr[i - 2] == '.'))
                 {
                     Console.Write(char.ToUpper(inputStr[i]));

@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_2-Task_1
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -16,16 +16,17 @@
                 - calculate product of all elements,
                 - calculate sum of even-index elements in array A,
                 - calculate sum of odd-index columns in array B.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_1
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            float[]? A = ArrayProcessor.MakeOneDimensionalArrayOfFloatsWithUserInput(5);
+            float[]? A = ArrayProcessor
+                            .MakeOneDimensionalArrayOfFloatsWithUserInput(5);
             if (A is null)
             {
                 return;
@@ -35,26 +36,37 @@ namespace Task_1
             ArrayProcessor.DisplayOneDimensionalArray(A);
             Console.WriteLine();
 
-            Console.WriteLine("Maximal element in array A : " + A.Max());
-            Console.WriteLine("Minimal element in array A : " + A.Min());
-            Console.WriteLine("Sum of elements in array A : " + A.Sum());
-            Console.WriteLine("Product of elements in array A : " + A.Product());
-            Console.WriteLine("Sum of even-index elements in array A : " + A.EvenIndexSum());
+            Console.WriteLine(
+                "Maximal element in array A : " + A.Max());
+            Console.WriteLine(
+                "Minimal element in array A : " + A.Min());
+            Console.WriteLine(
+                "Sum of elements in array A : " + A.Sum());
+            Console.WriteLine(
+                "Product of elements in array A : " + A.Product());
+            Console.WriteLine(
+                "Sum of even-index elements in array A : " + A.EvenIndexSum());
             Console.WriteLine();
 
             //=================================================================
 
-            float[,] B = ArrayProcessor.MakeTwoDimensionalArrayOfFloatsWithRandomNumbers(3, 4);
+            float[,] B = ArrayProcessor
+                            .MakeTwoDimensionalArrayOfFloatsWithRandomNumbers(3, 4);
 
             Console.WriteLine("Array В :");
             ArrayProcessor.DisplayTwoDimensionalArray(B);
             Console.WriteLine();
 
-            Console.WriteLine("Maximal element in array B : " + B.MaxTwoDim());
-            Console.WriteLine("Minimal element in array B : " + B.MinTwoDim());
-            Console.WriteLine("Sum of elements in array B : " + B.SumTwoDim());
-            Console.WriteLine("Product of elements in array B : " + B.ProductTwoDim());
-            Console.WriteLine("Sum of odd-index columns in array B : " + B.OddColumnSum());
+            Console.WriteLine(
+                "Maximal element in array B : " + B.MaxTwoDim());
+            Console.WriteLine(
+                "Minimal element in array B : " + B.MinTwoDim());
+            Console.WriteLine(
+                "Sum of elements in array B : " + B.SumTwoDim());
+            Console.WriteLine(
+                "Product of elements in array B : " + B.ProductTwoDim());
+            Console.WriteLine(
+                "Sum of odd-index columns in array B : " + B.OddColumnSum());
             Console.WriteLine();
         }
     }
