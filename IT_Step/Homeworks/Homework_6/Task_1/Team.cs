@@ -49,10 +49,9 @@ namespace Task_1
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator() =>
-            _workers.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _workers.GetEnumerator();
 
         public IEnumerator<Worker> GetEnumerator() =>
-           ((IEnumerable<Worker>)_workers).GetEnumerator();
+            ((IEnumerable<Worker>)_workers).GetEnumerator();
     }
 }

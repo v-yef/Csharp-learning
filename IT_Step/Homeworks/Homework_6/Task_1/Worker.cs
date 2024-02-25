@@ -30,7 +30,8 @@
                 }
             }
 
-            Console.WriteLine("Something was build. Press \"Enter\" to continue...");
+            Console.WriteLine(
+                "Something was build. Press \"Enter\" to continue...");
         }
     }
 
@@ -54,7 +55,8 @@
             }
 
             Console.WriteLine(
-                "Work is completed by : " + Math.Round((float)partsCount / house.Length * 100, 2) + " %");
+                "Work is completed by : " + 
+                Math.Round((float)partsCount / house.Length * 100, 2) + " %");
 
             Console.WriteLine("Press \"Enter\" to continue...");
         }

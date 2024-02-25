@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_6-Task_1
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -22,14 +22,14 @@
                as what part of the work has been completed. All team members
                are called to work in random order and only one member can be
                busy at the moment.
- ============================================================================
+ ==============================================================================
  */
 
 namespace Task_1
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var house = new House();
             var team = new Team();
@@ -38,7 +38,7 @@ namespace Task_1
             Console.WriteLine("========================");
             Console.WriteLine();
 
-            Random random = new Random();
+            var random = new Random();
 
             // At every iteration the random worker is called to do the work.
             while (!house.IsBuilt())
