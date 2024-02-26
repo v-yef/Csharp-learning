@@ -15,8 +15,8 @@
             get => this.ListContainer.Count;
         }
 
-        // The Push method imlements logic "the lesser priority key is - the closer to
-        // the beginning its member is inserted".
+        // The Push method imlements logic "the lesser priority key is -
+        // the closer to the beginning its member is inserted".
         public void Push(T value, uint priority)
         {
             if (this.IsEmpty())
