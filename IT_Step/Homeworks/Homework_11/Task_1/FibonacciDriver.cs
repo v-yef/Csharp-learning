@@ -36,7 +36,7 @@
             int FirstPrevious = 1;
             int SecondPrevious;
 
-            Console.WriteLine("Числа Фибоначчи для положительного поддиапазона :");
+            Console.WriteLine("Fibonacci numbers in positive range :");
 
             for (int i = 0; i < 1000000; i++)
             {
