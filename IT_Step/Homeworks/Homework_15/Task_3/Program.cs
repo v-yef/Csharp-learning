@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_15-Task_3
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -9,7 +9,7 @@
                mouse cursor to the element, and if the cursor is close enough
                to it, the element "runs away". Implement the run movement within
                the form only.
- ============================================================================
+ ==============================================================================
  */
 
 using System;

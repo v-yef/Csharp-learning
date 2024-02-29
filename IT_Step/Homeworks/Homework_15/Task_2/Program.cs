@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_15-Task_2
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -21,7 +21,7 @@
                 surface, it must disappear from the form. If there are several
                 rectangles at the click point, then the preference is given to
                 the one with the lowest serial number.
- ============================================================================
+ ==============================================================================
  */
 
 using System;

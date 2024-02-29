@@ -1,5 +1,5 @@
 ﻿/*
- ============================================================================
+ ==============================================================================
  Name        : Homework_15-Task_1
  Author      : Viacheslav Yefisko
  Version     : 0
@@ -17,7 +17,7 @@
                the window.
                - moving a mouse pointer within the working area, which should
                output current mouse coordinates x and y to the window title.
- ============================================================================
+ ==============================================================================
  */
 
 using System;
